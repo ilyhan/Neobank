@@ -1,0 +1,101 @@
+@import "@/common/styles/styleConstants.scss";
+@import "/public/fonts/fonts.css";
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:where(ul, ol):where([class]) {
+    padding-left: 0;
+}
+
+body,
+:where(blockquote, figure):where([class]) {
+    margin: 0;
+}
+
+:where(h1, h2, h3, h4, h5, h6, p, ul, ol, dl):where([class]) {
+    margin-block: 0;
+}
+
+:where(dd[class]) {
+    margin-left: 0;
+}
+
+:where(fieldset[class]) {
+    margin-left: 0;
+    padding: 0;
+    border: none;
+}
+
+:where(ul[class]) {
+    list-style: none;
+}
+
+p {
+    margin-block: 0;
+
+    &:where(:not([class]):not(:last-child)) {
+        margin-bottom: 1rem;
+    }
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+textarea,
+select,
+button {
+    font: inherit;
+}
+
+html {
+    height: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    height: 100%;
+    font-family: "Ubuntu", sans-serif;
+    background-color: $color-background;
+    color: $color-total-black;
+}
+
+svg {
+    *[stroke] {
+        stroke: currentColor;
+    }
+
+    * {
+        transition-property: fill, stroke;
+    }
+}
+
+a:hover,
+button:hover {
+    cursor: pointer;
+}
+
+a,
+button,
+input,
+textarea,
+svg * {
+    user-select: none;
+    transition: $transition-fast;
+}
+
+a {
+    text-decoration: none;
+    color: $color-total-black;
+    &:hover {
+        text-decoration: underline;
+    }
+}
