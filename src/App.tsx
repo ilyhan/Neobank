@@ -1,9 +1,9 @@
-import SvgHelper from "@/common/svg-helper/SvgHelper"
+import RoutesProvider from "@/router/RoutesProvider";
 
 function App() {
   return (
     <>
-      <SvgHelper iconName="logo" width={100} />
+      <RoutesProvider />
     </>
   )
 }
