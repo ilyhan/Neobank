@@ -1,0 +1,109 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.header {
+    @include defaultWrapper;
+    padding-block: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__list {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        @include clampText($text-m-main, $text-main);
+        font-weight: 700;
+    }
+
+    &__link {
+        transition: $transition-fast;
+        color: $color-dark-black;
+        text-decoration: none !important;
+
+        @media (hover: hover) {
+            &:hover {
+                color: $color-hover-link;
+            }
+        }
+
+        &.active {
+            color: $color-hover-link;
+        }
+    }
+
+    &__button {
+        padding: 16px;
+        border-radius: $border-radius-m;
+        background-color: $color-bright-blue;
+        color: $color-total-white;
+        box-shadow: $shadow-def;
+        @include clampText($text-m-main, $text-main);
+
+        @media(hover: hover) {
+            &:hover {
+                background-color: $color-hover-blue;
+            }
+        }
+
+        &:active {
+            scale: 0.98;
+        }
+    }
+
+    &__close-btn {
+        display: none;
+    }
+
+    &__burger-menu {
+        display: none;
+    }
+}
+
+@media (max-width: $tablet) {
+    .header {
+        &__nav {
+            position: fixed;
+            right: -240px;
+            top: 0;
+            width: 230px;
+            background-color: $color-total-white;
+            height: 100%;
+            border-top-left-radius: $border-radius-m;
+            border-bottom-left-radius: $border-radius-m;
+            box-shadow: $shadow-input;
+            transition: $transition-medium;
+
+            &_active {
+                translate: -230px;
+            }
+        }
+
+        &__list {
+            margin-top: 20px;
+            gap: 20px;
+            flex-direction: column;
+        }
+
+        &__button {
+            position: fixed;
+            right: -225px;
+            bottom: 30px;
+            width: 200px;
+            padding: 13px;
+
+            &_active {
+                translate: -230px;
+            }
+        }
+
+        &__close-btn {
+            margin: 10px 20px 0px auto;
+            display: flex;
+        }
+
+        &__burger-menu {
+            display: flex;
+        }
+    }
+}

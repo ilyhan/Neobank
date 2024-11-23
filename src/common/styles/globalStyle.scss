@@ -1,5 +1,6 @@
-@import "@/common/styles/styleConstants.scss";
-@import "/public/fonts/fonts.css";
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+@use "/public/fonts/fonts.css" as *;
 
 *,
 *::before,

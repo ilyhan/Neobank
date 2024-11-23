@@ -1,0 +1,15 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+
+.button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: $transition-medium;
+    @include flexCenter;
+
+    &:disabled{
+        cursor: not-allowed;
+    }
+}
