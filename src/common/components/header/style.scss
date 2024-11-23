@@ -19,7 +19,6 @@
     &__link {
         transition: $transition-fast;
         color: $color-dark-black;
-        text-decoration: none !important;
 
         @media (hover: hover) {
             &:hover {

@@ -1,6 +1,5 @@
-@use "@/common/styles/mixin.scss" as *;
 @use "@/common/styles/styleConstants" as *;
-@use "/public/fonts/fonts.css" as *;
+@use '/public/fonts/fonts.css' as *;
 
 *,
 *::before,
@@ -67,6 +66,7 @@ body {
     font-family: "Ubuntu", sans-serif;
     background-color: $color-background;
     color: $color-total-black;
+    line-height: 1.5;
 }
 
 svg {
@@ -96,7 +96,4 @@ svg * {
 a {
     text-decoration: none;
     color: $color-total-black;
-    &:hover {
-        text-decoration: underline;
-    }
 }
