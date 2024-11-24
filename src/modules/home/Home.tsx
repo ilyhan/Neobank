@@ -1,5 +1,6 @@
 import CardDesign from "@/common/components/cardDesign/CardDesign";
 import Features from "@/common/components/features/Features";
+import WorldMap from "@/common/components/worldMap/WorldMap";
 import "@/modules/home/style.scss";
 
 const Home = () => {
@@ -7,6 +8,7 @@ const Home = () => {
         <main className="main">
             <CardDesign />
             <Features />
+            <WorldMap />
         </main>
     )
 };
