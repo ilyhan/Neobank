@@ -1,3 +1,4 @@
+import Home from "@/modules/home/Home";
 import MainPage from "@/modules/mainPage/MainPage";
 import {
     Route,
@@ -12,7 +13,7 @@ export default function RoutesProvider() {
         createRoutesFromElements(
             <>
                 <Route path="/" element={<MainPage />}>
-                    <Route path="home" element={<div>Home</div>}/>
+                    <Route path="home" element={<Home />} />
                 </Route>
                 <Route path="*" element={<Navigate to="/home" replace />} />
             </>
