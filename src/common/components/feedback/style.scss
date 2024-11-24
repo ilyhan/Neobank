@@ -60,7 +60,7 @@
     }
 
     &__input {
-        @include clampText($text-m-large, $text-large);
+        @include clampText($text-m-medium, $text-medium);
         font-weight: 400;
         width: 100%;
         flex: 1;
@@ -95,7 +95,7 @@
         &__support {
             margin-bottom: 15px;
         }
-        
+
         &__title {
             margin-bottom: 30px;
         }
