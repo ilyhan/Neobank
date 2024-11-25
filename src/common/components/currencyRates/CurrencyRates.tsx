@@ -1,9 +1,24 @@
-import RenderList from "@/common/helper/RenderList";
 import bank from "/public/images/bank.svg";
+import { UseQueryResult } from "@/api/currency";
+import { useEffect, useState } from "react";
+import { getCurrency } from "@/common/helper/getCurrency";
+import { ICurrency } from "@/common/interfaces/currency";
+import { getFullDate } from "@/common/helper/timeHelper";
+import CurrencyList from "@/common/components/currencyRates/CurrencyList";
 import "@/common/components/currencyRates/style.scss";
-import { currencyList } from "@/common/arrays/currencyList";
 
 const CurrencyRates = () => {
+    const [currencyList, setCurrencyList] = useState<ICurrency[]>([]);
+    const [date, setDate] = useState('');
+    const { data, isLoading, isSuccess } = UseQueryResult();
+
+    useEffect(() => {
+        if (isSuccess && data) {
+            setCurrencyList(getCurrency(data, "RUB"));
+            setDate(getFullDate(data.timestamp * 1000));
+        }
+    }, [isLoading]);
+
     return (
         <section className="currency-rates">
             <header className="currency-rates__header">
@@ -11,24 +26,16 @@ const CurrencyRates = () => {
                     Exchange rate in internet bank
                 </h2>
 
-                <span id="update-time" className="currency-rates__update">
-                    Update every 15 minutes, MSC 12.11.2022
+                {isLoading && 'LOADING'}
+                <span className="currency-rates__update">
+                    Update every 15 minutes, MSC {date}
                 </span>
             </header>
 
             <h3 className="currency-rates__subtitle">Currency</h3>
 
             <div className="currency-rates__info-warpper">
-                <RenderList
-                    items={currencyList}
-                    classes="currency-rates__list"
-                    renderItem={(item, index) => (
-                        <li key={index} className="currency-rates__item">
-                            <span className="currency-rates__currency">{item.currency}:</span>
-                            <span className="currency-rates__course">{item.course.toFixed(2)}</span>
-                        </li>
-                    )}
-                />
+                {isLoading ? "Loading..." : <CurrencyList items={currencyList}/>}
 
                 <img src={bank} className="currency-rates__image" alt="bank" />
             </div>
