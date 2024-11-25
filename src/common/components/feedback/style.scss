@@ -60,6 +60,7 @@
     }
 
     &__input {
+        font-family: "Nunito Sans", sans-serif;
         @include clampText($text-m-medium, $text-medium);
         font-weight: 400;
         width: 100%;

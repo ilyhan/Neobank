@@ -1,4 +1,4 @@
-import men from "@/common/svg-helper/icons/men.svg"
+import men from "/public/images/men.svg";
 import RenderList from "@/common/helper/RenderList";
 import { featuresList } from "@/common/arrays/featuresList";
 import SvgHelper from "@/common/svg-helper/SvgHelper";

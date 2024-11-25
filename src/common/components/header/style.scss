@@ -37,6 +37,8 @@
         background-color: $color-bright-blue;
         color: $color-total-white;
         box-shadow: $shadow-def;
+        font-weight: 700;
+        line-height: 18px;
         @include clampText($text-m-main, $text-main);
 
         @media(hover: hover) {

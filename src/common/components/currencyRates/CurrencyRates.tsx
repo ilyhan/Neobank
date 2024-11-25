@@ -11,7 +11,7 @@ import Loader from "@/common/components/loader/Loader";
 const CurrencyRates = () => {
     const [currencyList, setCurrencyList] = useState<ICurrency[]>([]);
     const [date, setDate] = useState('');
-    const { data, isLoading, isSuccess } = UseQueryResult();
+    const { data, isLoading, isSuccess, isError } = UseQueryResult();
 
     useEffect(() => {
         if (isSuccess && data) {
@@ -34,10 +34,11 @@ const CurrencyRates = () => {
             </header>
 
             <h3 className="currency-rates__subtitle">Currency</h3>
+            {isError && <p>Sorry, an error has occurred</p>}
 
             <div className="currency-rates__info-warpper">
-                {isLoading 
-                    ? <Loader /> 
+                {isLoading
+                    ? <Loader />
                     : <CurrencyList items={currencyList} />
                 }
 

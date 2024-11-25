@@ -1,6 +1,8 @@
 import ButtonIcon from "@/common/ui/buttonIcon/ButtonIcon";
 import { NavLink } from "react-router-dom";
 import "@/common/components/header/style.scss"
+import RenderList from "@/common/helper/RenderList";
+import { navList } from "@/common/arrays/navList";
 
 interface INavigationProps {
     isOpen: boolean;
@@ -16,31 +18,17 @@ const Navigation = ({ isOpen, onClose }: INavigationProps) => {
                 onClick={onClose}
             />
 
-            <ul className="header__list">
-                <li>
-                    <NavLink to="credit-card" className="header__link">
-                        Credit card
-                    </NavLink>
-                </li>
-
-                <li>
-                    <NavLink to="product" className="header__link">
-                        Product
-                    </NavLink>
-                </li>
-
-                <li>
-                    <NavLink to="account" className="header__link">
-                        Account
-                    </NavLink>
-                </li>
-
-                <li>
-                    <NavLink to="resources" className="header__link">
-                        Resources
-                    </NavLink>
-                </li>
-            </ul>
+            <RenderList
+                items={navList}
+                classes="header__list"
+                renderItem={(item, index) => (
+                    <li key={index}>
+                        <NavLink to={item.link} className="header__link">
+                            {item.title}
+                        </NavLink>
+                    </li>
+                )}
+            />
         </nav>
     )
 };
