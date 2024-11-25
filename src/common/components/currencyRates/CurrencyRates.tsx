@@ -6,6 +6,7 @@ import { ICurrency } from "@/common/interfaces/currency";
 import { getFullDate } from "@/common/helper/timeHelper";
 import CurrencyList from "@/common/components/currencyRates/CurrencyList";
 import "@/common/components/currencyRates/style.scss";
+import Loader from "@/common/components/loader/Loader";
 
 const CurrencyRates = () => {
     const [currencyList, setCurrencyList] = useState<ICurrency[]>([]);
@@ -35,7 +36,10 @@ const CurrencyRates = () => {
             <h3 className="currency-rates__subtitle">Currency</h3>
 
             <div className="currency-rates__info-warpper">
-                {isLoading ? "Loading..." : <CurrencyList items={currencyList}/>}
+                {isLoading 
+                    ? <Loader /> 
+                    : <CurrencyList items={currencyList} />
+                }
 
                 <img src={bank} className="currency-rates__image" alt="bank" />
             </div>
