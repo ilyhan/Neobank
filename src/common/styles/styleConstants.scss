@@ -1,0 +1,73 @@
+//colors 
+//black 
+$color-total-black: rgba(0, 0, 0, 1);
+$color-dark-black: rgba(29, 25, 41, 1);
+$color-black: rgba(28, 28, 28, 1);
+$color-dim-black: rgba(28, 28, 30, 1);
+$color-deep-black: rgba(11, 19, 42, 1);
+//blue
+$color-bright-blue:rgba(0, 60, 255, 1);
+$color-soft-blue:rgba(104, 109, 241, 1);
+$color-hover-blue: rgba(119, 150, 192, 1);
+//white 
+$color-total-white: rgba(255, 255, 255, 1);
+$color-background: rgba(245, 244, 255, 1);
+$color-soft-white: rgba(244, 244, 244, 1);
+//grey 
+$color-light-grey: rgba(178, 178, 178, 0.2);
+$color-footer: rgba(231, 231, 231, 1);
+$color-dark-grey: rgba(79, 86, 101, 1);
+$color-medium-grey:rgba(128, 128, 128, 1);
+$color-misty-grey: rgba(45, 55, 72, 1);
+$color-grey-input: rgba(144, 146, 176, 1);
+//accent
+$color-loader: rgba(180, 56, 122, 1);
+$color-accent: rgba(235, 128, 29, 1);
+$color-hover-link: rgba(178, 163, 95, 1);
+
+//background
+$gradient-def: 
+linear-gradient(358.2deg, rgba(178, 178, 178, 0.8) 8.06%, rgba(178, 178, 178, 0) 67.93%),  
+linear-gradient(0deg, rgba(244, 244, 244, 0.9), rgba(244, 244, 244, 0.9));
+
+//font-sizes in px
+$text-title: 48;
+$text-m-title: 34;
+
+$text-subtitle: 35;
+$text-m-subtitle: 28;
+
+$text-small-title: 30;
+$text-m-small-title: 24;
+
+$text-large: 24;
+$text-m-large: 20;
+
+$text-medium: 20;
+$text-m-medium: 16;
+
+$text-main: 16;
+$text-m-main: 14;
+
+$text-small: 14;
+$text-m-small: 12;
+
+//borders
+$border-radius-xl : 28px;
+$border-radius-l : 20px;
+$border-radius-m : 16px;
+$border-circle: 50%;
+
+//shadows
+$shadow-def: 0px 2px 4px 0px rgba(187, 187, 187, 0.2), 0px 0px 4px 0px rgba(0, 0, 0, 0.08);
+$shadow-input: 0px 10px 20px 0px rgba(54, 58, 120, 0.1);
+
+//transitions
+$transition-fast: all 0.2s ease;
+$transition-medium: all 0.3s ease;
+$transition-slow: all 0.5s ease;
+
+//breakpoints
+$desktop: 1300px;
+$tablet: 920px;
+$mobile: 500px;

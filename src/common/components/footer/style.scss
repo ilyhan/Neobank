@@ -1,0 +1,121 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.footer {
+    background-color: $color-footer;
+    padding-block: 96px 92px;
+
+    &__container {
+        @include defaultWrapper;
+    }
+
+    &__contacts-wrapper {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        margin-bottom: 32px;
+    }
+
+    &__contacts {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    &__tel {
+        color: $color-total-black;
+        font-weight: 700;
+        font-style: normal;
+        @include clampText($text-m-small-title, $text-small-title);
+        transition: $transition-fast;
+
+        @media (hover: hover) {
+            &:hover {
+                color: $color-hover-link;
+            }
+        }
+    }
+
+    &__email {
+        color: $color-misty-grey;
+        font-weight: 500;
+        font-style: normal;
+        @include clampText($text-m-main, $text-main);
+        transition: $transition-fast;
+
+        @media (hover: hover) {
+            &:hover {
+                color: $color-hover-link;
+            }
+        }
+    }
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 32px;
+        row-gap: 8px;
+    }
+
+    &__link {
+        transition: $transition-fast;
+        color: $color-total-black;
+        font-weight: 500;
+        @include clampText($text-m-main, $text-main);
+
+        @media (hover: hover) {
+            &:hover {
+                color: $color-hover-link;
+            }
+        }
+    }
+
+    &__divider {
+        height: 2px;
+        margin-block: 32px;
+        background-color: $color-total-white;
+        opacity: 0.81;
+    }
+
+    &__cookie {
+        color: $color-misty-grey;
+        font-weight: 500;
+        @include clampText($text-m-main, $text-main);
+    }
+}
+
+@media (max-width: $tablet) {
+    .footer {
+        padding-block: 76px 72px;
+
+        &__list {
+            column-gap: 25px;
+            row-gap: 5px;
+        }
+    }
+}
+
+@media (max-width: $mobile) {
+    .footer {
+        padding-block: 56px 52px;
+
+        &__list {
+            column-gap: 20px;
+            justify-content: center;
+        }
+
+        &__contacts-wrapper {
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        &__contacts {
+            align-items: center;
+        }
+
+        &__divider {
+            margin-block: 25px;
+        }
+    }
+}

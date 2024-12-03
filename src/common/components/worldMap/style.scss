@@ -1,0 +1,49 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.world-map {
+    line-height: 50px;
+    text-align: center;
+    font-weight: 500;
+    margin-top: 48px;
+
+    &__title {
+        @include clampText($text-m-small-title, $text-small-title);
+        color: $color-black;
+        margin-bottom: 8px;
+    }
+
+    &__description {
+        @include clampText($text-m-main, $text-main);
+        color: $color-dim-black;
+        margin-bottom: 48px;
+    }
+
+    &__image{
+        max-width: 1060px;
+        width: 100%;
+        height: auto;
+        margin-inline: auto;
+    }
+}
+
+@media (max-width: $tablet) {
+    .world-map {
+        &__title{
+            line-height: 40px;
+        }
+
+        &__description{
+            line-height: 35px;
+        }
+    }
+}
+
+@media (max-width: $mobile) {
+    .world-map {
+        &__description{
+            line-height: 25px;
+            margin-bottom: 30px;
+        }
+    }
+}

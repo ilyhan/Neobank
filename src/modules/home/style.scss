@@ -1,0 +1,19 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.main {
+    @include defaultWrapper;
+    margin-block: 131px 98px;
+}
+
+@media (max-width: $tablet) {
+    .main {
+        margin-block: 100px 78px;
+    }
+}
+
+@media (max-width: $mobile) {
+    .main {
+        margin-block: 60px 50px;
+    }
+}
