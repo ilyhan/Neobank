@@ -1,0 +1,106 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.slider {
+    width: 100%;
+    overflow-x: hidden;
+    text-align: center;
+    margin-top: 48px;
+
+    &__title{
+        @include clampText($text-m-small-title, $text-small-title);
+        font-weight: 500;
+        line-height: 50px;
+    }
+
+    &__description{
+        @include clampText($text-m-main, $text-main);
+        color: $color-misty-grey;
+        font-weight: 500;
+        line-height: 50px;
+        margin-block: 8px 46px;
+    }
+
+    &__cards {
+        display: flex;
+        gap: 80px;
+        width: fit-content;
+        margin-bottom: 48px;
+        transition: $transition-fast;
+    }
+
+    &__actions {
+        display: flex;
+        gap:20px;
+        width: fit-content;
+        margin-inline: auto 0;
+    }
+
+    &__button {
+        height: 64px;
+        aspect-ratio: 1;
+        background-color: $color-total-white;
+        border: 1px solid $color-bright-blue;
+        border-radius: 50%;
+
+        &:hover {
+            @media (hover: hover) {
+                background-color: $color-bright-blue;
+                .slider__button-icon{
+                    color: $color-total-white;
+                }
+            }
+        }
+
+        &:active {
+            scale: 0.95;
+            opacity: 0.9;
+        }
+
+        &:disabled {
+            background-color: $color-soft-white;
+
+            .slider__button-icon{
+                color: $color-dark-grey;
+            }
+
+            &:active {
+                scale: none; 
+                opacity: 1;  
+            }
+        }
+
+        &_rotate {
+            rotate: 180deg;
+        }
+    }
+}
+
+
+@media (max-width: $tablet){
+    .slider{
+        &__description {
+            line-height: 35px;
+        }
+    }
+}
+
+@media (max-width: $mobile){
+    .slider{
+        &__title {
+            line-height: 40px;
+        }
+
+        &__description {
+            line-height: 25px;
+        }
+
+        &__cards{
+            gap: 60px;
+        }
+
+        &__button {
+            height: 54px;
+        }
+    }
+}

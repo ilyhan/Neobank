@@ -3,6 +3,7 @@
 
 .main {
     @include defaultWrapper;
+    width: 100vw;
     margin-block: 131px 98px;
 }
 
