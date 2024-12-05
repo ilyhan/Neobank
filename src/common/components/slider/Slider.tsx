@@ -11,7 +11,7 @@ import SliderActions from "@/common/components/slider/SliderActions";
 
 const Slider = () => {
     const [cards, setCards] = useState<INews[]>([]);
-    const { data, isLoading, isError } = useNews();
+    const { data, isLoading, isError, isSuccess } = useNews();
 
     useEffect(() => {
         if (data) {
@@ -85,12 +85,12 @@ const Slider = () => {
                 />
             }
 
-            <SliderActions
+            {isSuccess && !!cards.length && <SliderActions
                 onPrevClick={handlePrev}
                 onNextClick={handleNext}
                 btnPrevRef={btnPrev}
                 btnNextRef={btnNext}
-            />
+            />}
         </section>
     )
 };
