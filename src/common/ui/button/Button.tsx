@@ -1,4 +1,5 @@
 import "@/common/ui/Button/style.scss";
+import { forwardRef } from "react";
 
 interface IButtonProps {
     children: React.ReactNode;
@@ -9,14 +10,14 @@ interface IButtonProps {
     disabled?: boolean;
 }
 
-const Button = ({ 
+const Button = forwardRef<HTMLButtonElement, IButtonProps>(({ 
     children, 
     onClick, 
     title, 
     classes = '', 
     type = 'button', 
     disabled = false 
-}: IButtonProps) => {
+}, ref) => {
     return (
         <button
             onClick={onClick}
@@ -24,10 +25,11 @@ const Button = ({
             type={type}
             disabled={disabled}
             title={title}
+            ref={ref}
         >
             {children}
         </button>
     )
-};
+});
 
 export default Button;
