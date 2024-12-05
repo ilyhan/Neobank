@@ -1,13 +1,25 @@
 import SvgHelper from "@/common/svg-helper/SvgHelper";
 import Button from "@/common/ui/button/Button";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import RenderList from "@/common/helper/RenderList";
-import { newsCardList } from "@/common/arrays/newsCardLists";
 import SliderCard from "@/common/components/sliderCard/SliderCard";
 import { useDebounce } from "@/common/hooks/useDebounce";
 import "@/common/components/slider/style.scss";
+import { useNews } from "@/api/news";
+import Loader from "@/common/components/loader/Loader";
+import { INews } from "@/common/interfaces/news";
+import { filterNews } from "@/common/helper/filterNews";
 
 const Slider = () => {
+    const [cards, setCards] = useState<INews[]>([]);
+    const { data, isLoading, isError } = useNews();
+
+    useEffect(()=>{
+        if(data) {
+            setCards(filterNews(data.articles));
+        }
+    }, [data, isLoading]);
+
     const cardsList = useRef<HTMLUListElement>(null);
     const btnPrev = useRef<HTMLButtonElement>(null);
     const btnNext = useRef<HTMLButtonElement>(null);
@@ -16,7 +28,7 @@ const Slider = () => {
     const debounceDelay = 100;
 
     const scrollByBtn = (scroll: number) => {
-        if(cardsList.current){
+        if (cardsList.current) {
             cardsList.current.scrollBy(scroll, 0);
         }
     };
@@ -30,22 +42,14 @@ const Slider = () => {
     };
 
     const handleScroll = () => {
-        if (!cardsList.current) return; 
-        
-        const scrollLeft = cardsList.current.scrollLeft;
-        const scrollWidth = cardsList.current.scrollWidth;
-        const clientWidth = cardsList.current.clientWidth;
-    
-        const isRight = scrollLeft >= scrollWidth - clientWidth - 10;
-        const isLeft = scrollLeft === 0;
-    
-        if (btnNext.current) {
-            btnNext.current.disabled = isRight;
-        }
-    
-        if (btnPrev.current) {
-            btnPrev.current.disabled = isLeft; 
-        }
+        const list = cardsList.current;
+        if (!list) return;
+
+        const isRight = list.scrollLeft >= list.scrollWidth - list.clientWidth - 10;
+        const isLeft = list.scrollLeft === 0;
+
+        btnNext.current!.disabled = isRight;
+        btnPrev.current!.disabled = isLeft;
     };
 
     const setDisabledDebounce = useDebounce(handleScroll, debounceDelay);
@@ -59,23 +63,27 @@ const Slider = () => {
                 by clicking on the news you are interested in.
             </p>
 
-            <RenderList
-                items={newsCardList}
-                classes="slider__cards"
-                ref={cardsList}
-                onScroll={setDisabledDebounce}
-                renderItem={(item, index) => (
-                    <li key={index}>
-                        <SliderCard
-                            title={item.title}
-                            description={item.description}
-                            src={item.src}
-                            alt={item.alt}
-                            link=""
-                        />
-                    </li>
-                )}
-            />
+            {isError && <p>Sorry, an error has occurred</p>}
+
+            {isLoading
+                ? <Loader />
+                : <RenderList
+                    items={cards}
+                    classes="slider__cards"
+                    ref={cardsList}
+                    onScroll={setDisabledDebounce}
+                    renderItem={(item, index) => (
+                        <li key={index}>
+                            <SliderCard
+                                title={item.title}
+                                description={item.description}
+                                src={item.urlToImage}
+                                link={item.url}
+                            />
+                        </li>
+                    )}
+                />
+            }
 
             <div className="slider__actions">
                 <Button
