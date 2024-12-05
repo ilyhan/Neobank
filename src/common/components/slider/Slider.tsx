@@ -1,5 +1,3 @@
-import SvgHelper from "@/common/svg-helper/SvgHelper";
-import Button from "@/common/ui/button/Button";
 import { useEffect, useRef, useState } from "react";
 import RenderList from "@/common/helper/RenderList";
 import SliderCard from "@/common/components/sliderCard/SliderCard";
@@ -9,16 +7,17 @@ import { useNews } from "@/api/news";
 import Loader from "@/common/components/loader/Loader";
 import { INews } from "@/common/interfaces/news";
 import { filterNews } from "@/common/helper/filterNews";
+import SliderActions from "@/common/components/slider/SliderActions";
 
 const Slider = () => {
     const [cards, setCards] = useState<INews[]>([]);
     const { data, isLoading, isError } = useNews();
 
-    useEffect(()=>{
-        if(data) {
+    useEffect(() => {
+        if (data) {
             setCards(filterNews(data.articles));
         }
-    }, [data, isLoading]);
+    }, [isLoading]);
 
     const cardsList = useRef<HTMLUListElement>(null);
     const btnPrev = useRef<HTMLButtonElement>(null);
@@ -48,11 +47,17 @@ const Slider = () => {
         const isRight = list.scrollLeft >= list.scrollWidth - list.clientWidth - 10;
         const isLeft = list.scrollLeft === 0;
 
-        btnNext.current!.disabled = isRight;
-        btnPrev.current!.disabled = isLeft;
-    };
+        if (btnNext.current) {
+            btnNext.current.disabled = isRight;
+        }
 
-    const setDisabledDebounce = useDebounce(handleScroll, debounceDelay);
+        if (btnPrev.current) {
+            btnPrev.current.disabled = isLeft;
+        }
+    };
+    handleScroll();
+
+    const handleScrollDebounce = useDebounce(handleScroll, debounceDelay);
 
     return (
         <section className="slider">
@@ -71,39 +76,21 @@ const Slider = () => {
                     items={cards}
                     classes="slider__cards"
                     ref={cardsList}
-                    onScroll={setDisabledDebounce}
+                    onScroll={handleScrollDebounce}
                     renderItem={(item, index) => (
                         <li key={index}>
-                            <SliderCard
-                                title={item.title}
-                                description={item.description}
-                                src={item.urlToImage}
-                                link={item.url}
-                            />
+                            <SliderCard {...item} />
                         </li>
                     )}
                 />
             }
 
-            <div className="slider__actions">
-                <Button
-                    onClick={handlePrev}
-                    ref={btnPrev}
-                    classes="slider__button"
-                    title="прокрутить влево"
-                >
-                    <SvgHelper iconName="arrow" className="slider__button-icon" />
-                </Button>
-
-                <Button
-                    onClick={handleNext}
-                    ref={btnNext}
-                    classes="slider__button slider__button_rotate"
-                    title="прокрутить вправо"
-                >
-                    <SvgHelper iconName="arrow" className="slider__button-icon" />
-                </Button>
-            </div>
+            <SliderActions
+                onPrevClick={handlePrev}
+                onNextClick={handleNext}
+                btnPrevRef={btnPrev}
+                btnNextRef={btnNext}
+            />
         </section>
     )
 };

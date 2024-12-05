@@ -2,18 +2,18 @@ import "@/common/components/sliderCard/style.scss";
 import { Link } from "react-router-dom";
 
 interface ISliderCardProps {
-    src: string;
+    urlToImage: string;
     title: string;
     description: string;
-    link: string;
+    url: string;
     alt?: string;
 }
 
-const SliderCard = ({ src, title, description, link, alt = "Картинка новости" }: ISliderCardProps) => {
+const SliderCard = ({ urlToImage, title, description, url, alt = "Картинка новости" }: ISliderCardProps) => {
     return (
         <article className="card">
-            <Link to={link} target="_blank">
-                <img src={src} className="card__image" alt={alt} />
+            <Link to={url} target="_blank">
+                <img src={urlToImage} className="card__image" alt={alt} />
 
                 <p className="card__title">
                     {title}

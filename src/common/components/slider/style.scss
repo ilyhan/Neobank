@@ -85,7 +85,6 @@
     }
 }
 
-
 @media (max-width: $tablet) {
     .slider {
         &__description {
@@ -106,6 +105,7 @@
 
         &__cards {
             gap: 60px;
+            margin-bottom: 20px;
         }
 
         &__button {
