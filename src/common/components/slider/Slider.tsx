@@ -17,7 +17,7 @@ const Slider = () => {
         if (data) {
             setCards(filterNews(data.articles));
         }
-    }, [isLoading]);
+    }, [data, isSuccess]);
 
     const cardsList = useRef<HTMLUListElement>(null);
     const btnPrev = useRef<HTMLButtonElement>(null);
@@ -55,7 +55,6 @@ const Slider = () => {
             btnPrev.current.disabled = isLeft;
         }
     };
-    handleScroll();
 
     const handleScrollDebounce = useDebounce(handleScroll, debounceDelay);
 
@@ -77,6 +76,7 @@ const Slider = () => {
                     classes="slider__cards"
                     ref={cardsList}
                     onScroll={handleScrollDebounce}
+                    onLoad={handleScroll}
                     renderItem={(item, index) => (
                         <li key={index}>
                             <SliderCard {...item} />
