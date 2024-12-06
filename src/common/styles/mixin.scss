@@ -22,3 +22,11 @@
     justify-content: space-between;
     align-items: center;
 }
+
+@mixin textEllipsis($num: 3) {
+    display: -webkit-box;
+    -webkit-line-clamp: $num;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

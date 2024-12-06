@@ -4,6 +4,7 @@ import close from '@/common/svg-helper/icons/close.svg?react';
 import success from '@/common/svg-helper/icons/success.svg?react';
 import email from '@/common/svg-helper/icons/email.svg?react';
 import send from '@/common/svg-helper/icons/send.svg?react';
+import arrow from '@/common/svg-helper/icons/arrow.svg?react';
 
 export type IconType = React.FunctionComponent<
     React.SVGProps<SVGSVGElement> & {
@@ -17,7 +18,8 @@ export type ImageComponentsTypes =
     | 'close'
     | 'success'
     | 'email'
-    | 'send';
+    | 'send'
+    | 'arrow';
 
 export const ImageComponents: Record<ImageComponentsTypes, IconType> = {
     logo,
@@ -26,4 +28,5 @@ export const ImageComponents: Record<ImageComponentsTypes, IconType> = {
     success,
     email,
     send,
+    arrow,
 };
