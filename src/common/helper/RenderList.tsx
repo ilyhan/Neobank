@@ -1,18 +1,19 @@
+import React, { forwardRef, HTMLAttributes, Ref } from 'react';
 
-interface IListProps<T> {
+interface IListProps<T> extends HTMLAttributes<HTMLUListElement>{
     items: T[];
-    renderItem: (_:T, __:number) => React.ReactNode;
+    renderItem: (item: T, index: number) => React.ReactNode;
     classes?: string;
 }
 
-const RenderList = <T,>({ items, renderItem , classes = ''}: IListProps<T>) => {
-    return (
-        <ul className={`${classes}`}>
-            {items.map((item, index) => (
-                renderItem(item, index)
-            ))}
-        </ul>
-    )
-};
+const RenderList = forwardRef<HTMLUListElement, IListProps<any>>(
+    <T,>({ items, renderItem, classes = '' , ...props}: IListProps<T>, ref: Ref<HTMLUListElement>) => {
+        return (
+            <ul ref={ref} {...props} className={classes} >
+                {items.map((item, index) => renderItem(item, index))}
+            </ul>
+        );
+    }
+);
 
 export default RenderList;
