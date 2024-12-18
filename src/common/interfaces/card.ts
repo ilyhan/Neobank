@@ -1,3 +1,5 @@
+import { ImageComponentsTypes } from "@/common/svg-helper";
+
 export interface ICard {
     src: string;
     alt: string;
@@ -10,5 +12,11 @@ export interface ICreditCardDetails {
 }
 
 export interface IStepGetCard {
+    description: string;
+}
+
+export interface IAboutCard {
+    icon: ImageComponentsTypes;
+    title: string;
     description: string;
 }

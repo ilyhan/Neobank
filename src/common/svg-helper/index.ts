@@ -5,6 +5,12 @@ import success from '@/common/svg-helper/icons/success.svg?react';
 import email from '@/common/svg-helper/icons/email.svg?react';
 import send from '@/common/svg-helper/icons/send.svg?react';
 import arrow from '@/common/svg-helper/icons/arrow.svg?react';
+import bag from '@/common/svg-helper/icons/bag.svg?react';
+import calendar from '@/common/svg-helper/icons/calendar.svg?react';
+import card from '@/common/svg-helper/icons/card.svg?react';
+import clock from '@/common/svg-helper/icons/clock.svg?react';
+import money from '@/common/svg-helper/icons/money.svg?react';
+
 
 export type IconType = React.FunctionComponent<
     React.SVGProps<SVGSVGElement> & {
@@ -19,7 +25,12 @@ export type ImageComponentsTypes =
     | 'success'
     | 'email'
     | 'send'
-    | 'arrow';
+    | 'arrow'
+    | 'bag'
+    | 'calendar'
+    | 'card'
+    | 'clock'
+    | 'money';
 
 export const ImageComponents: Record<ImageComponentsTypes, IconType> = {
     logo,
@@ -29,4 +40,9 @@ export const ImageComponents: Record<ImageComponentsTypes, IconType> = {
     email,
     send,
     arrow,
+    bag,
+    calendar,
+    card,
+    clock,
+    money,
 };
