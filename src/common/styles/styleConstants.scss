@@ -21,6 +21,7 @@ $color-medium-grey:rgba(128, 128, 128, 1);
 $color-misty-grey: rgba(45, 55, 72, 1);
 $color-grey-input: rgba(144, 146, 176, 1);
 $color-grey-border: rgba(187, 187, 187, 0.2);
+$color-deep-grey: rgba(61, 61, 61, 1);
 //accent
 $color-loader: rgba(180, 56, 122, 1);
 $color-accent: rgba(235, 128, 29, 1);
@@ -30,6 +31,10 @@ $color-hover-link: rgba(178, 163, 95, 1);
 $gradient-def: 
 linear-gradient(358.2deg, rgba(178, 178, 178, 0.8) 8.06%, rgba(178, 178, 178, 0) 67.93%),  
 linear-gradient(0deg, rgba(244, 244, 244, 0.9), rgba(244, 244, 244, 0.9));
+
+$light-soft-gradient:
+linear-gradient(180.8deg, rgba(203, 213, 224, 0.624) 34.33%, rgba(254, 235, 200, 0.56) 64.27%);
+
 
 //font-sizes in px
 $text-title: 48;
@@ -53,10 +58,14 @@ $text-m-main: 14;
 $text-small: 14;
 $text-m-small: 12;
 
+$text-extra-small: 12;
+$text-m-extra-small: 10;
+
 //borders
 $border-radius-xl : 28px;
 $border-radius-l : 20px;
 $border-radius-m : 16px;
+$border-radius-s : 8px;
 $border-circle: 50%;
 
 //shadows

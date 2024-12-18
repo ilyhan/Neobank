@@ -1,0 +1,161 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.credit-card {
+    width: 100%;
+    padding: 48px 32px;
+    border-radius: $border-radius-xl;
+    box-shadow: $shadow-input;
+    background: $light-soft-gradient;
+    display: flex;
+    align-items: center;
+    gap: 120px;
+
+    &__content {
+        max-width: 650px;
+    }
+
+    &__title {
+        @include clampText($text-m-title, $text-title);
+        font-weight: 700;
+        line-height: 48px;
+        color: $color-total-white;
+        letter-spacing: 0.02em;
+    }
+
+    &__description {
+        @include clampText($text-m-main, $text-main);
+        max-width: 515px;
+        font-weight: 500;
+        line-height: 18px;
+        color: $color-misty-grey;
+        margin-block: 48px 32px;
+    }
+
+    &__list {
+        @include flexBetween;
+        gap: 10px;
+        padding-right: 35px;
+        margin-bottom: 32px;
+    }
+
+    &__item-title {
+        @include clampText($text-m-medium, $text-medium);
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 22px;
+        letter-spacing: 0.02em;
+        color: $color-deep-grey;
+        margin-bottom: 9px;
+    }
+
+    &__item-description {
+        @include clampText($text-m-main, $text-main);
+        font-weight: 500;
+        line-height: 18px;
+        letter-spacing: 0.02em;
+    }
+
+    &__button {
+        padding: 16px;
+        border-radius: $border-radius-s;
+        background-color: $color-bright-blue;
+        color: $color-total-white;
+        box-shadow: $shadow-def;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        line-height: 18px;
+        @include clampText($text-m-main, $text-main);
+
+        @media(hover: hover) {
+            &:hover {
+                background-color: $color-hover-blue;
+            }
+        }
+
+        &:active {
+            scale: 0.98;
+        }
+    }
+
+    &__image {
+        border-radius: $border-radius-l ;
+        width: 380px;
+        animation: infRotation 10s infinite;
+
+        &_hidden {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: $desktop) {
+    .credit-card {
+        &__list {
+            padding-right: 10px;
+        }
+    }
+}
+
+@media (max-width: $tablet) {
+    .credit-card {
+        display: block;
+        text-align: center;
+
+        &__content {
+            max-width: 100%;
+        }
+
+        &__description {
+            margin: 30px auto;
+        }
+
+        &__image {
+            margin: 40px auto;
+            width: 300px;
+
+            &_hidden {
+                display: block;
+            }
+
+            &_show {
+                display: none;
+            }
+        }
+
+        &__button {
+            margin-inline: auto;
+        }
+    }
+}
+
+@media (max-width: $mobile) {
+    .credit-card {
+        padding: 30px 25px;
+
+        &__list {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding-right: 0px;
+        }
+    }
+}
+
+@keyframes infRotation {
+    0% {
+        rotate: 0deg;
+    }
+
+    10% {
+        rotate: 15deg;
+    }
+
+    20% {
+        rotate: 0deg;
+    }
+
+    100% {
+        rotate: 0deg;
+    }
+}
