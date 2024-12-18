@@ -8,3 +8,7 @@ export interface ICreditCardDetails {
     description: string;
     tooltip: string;
 }
+
+export interface IStepGetCard {
+    description: string;
+}

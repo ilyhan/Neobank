@@ -1,0 +1,7 @@
+@use "@/common/styles/styleConstants" as *;
+
+.divider {
+    width: 100%;
+    height: 2px;
+    background-color: $color-medium-gre-tr;
+}
