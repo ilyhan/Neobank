@@ -20,3 +20,8 @@ export interface IAboutCard {
     title: string;
     description: string;
 }
+
+export interface ICashbackCard {
+    title: string;
+    description: string;
+}
