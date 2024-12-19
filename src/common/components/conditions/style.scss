@@ -1,0 +1,50 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.conditions {
+    &__list {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    &__item {
+        &:last-child .conditions__divider{
+            display: none;
+        }
+    }
+
+    &__content-wrapper {
+        @include clampText($text-m-main, $text-main);
+        display: flex;
+        gap: 40px;
+        font-weight: 500;
+        line-height: 16px;
+        letter-spacing: 0.02em;
+        margin-block: 24px;
+    }
+
+    &__title {
+        min-width: 260px;
+    }
+
+    &__descriptions {
+        color: $color-grey-divider;
+    }
+
+    &__divider {
+        height: 1px;
+    }
+}
+
+@media (max-width: $mobile){
+    .conditions{
+        &__title {
+            min-width: 120px;
+            width: 120px;
+        }
+
+        &__content-wrapper {
+            margin-block: 18px;
+        }
+    }
+}

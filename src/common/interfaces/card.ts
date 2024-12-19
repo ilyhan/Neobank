@@ -25,3 +25,8 @@ export interface ICashbackCard {
     title: string;
     description: string;
 }
+
+export interface ICardConditions {
+    key: string; 
+    value: string | string[]; 
+}
