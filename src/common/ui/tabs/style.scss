@@ -1,0 +1,52 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.tabs {
+    width: 100%;
+    margin-top: 48px;
+
+    &__list {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 32px;
+
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            border-bottom: 2px solid $color-medium-gre-tr;
+        }
+    }
+
+    &__button {
+        @include clampText($text-m-main, $text-main);
+        font-weight: 500;
+        line-height: 16px;
+        letter-spacing: 0.02em;
+        color: $color-details;
+        background: transparent;
+        padding-bottom: 10px;
+        transition: none;
+        border-bottom: 2px solid transparent;
+
+        &_active {
+            border-color: $color-details;
+        }
+    }
+}
+
+@media (max-width: $mobile) {
+    .tabs {
+        &__list {
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+
+            &::after {
+                content: none;
+            }
+        }
+    }
+}
