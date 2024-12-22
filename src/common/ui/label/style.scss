@@ -1,0 +1,13 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.label {
+    @include clampText($text-m-main, $text-main);
+    font-weight: 500;
+    line-height: 16px;
+    color: $color-dark-label;
+
+    &__required {
+        color: $color-red;
+    }
+}

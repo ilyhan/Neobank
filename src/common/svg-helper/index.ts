@@ -11,6 +11,9 @@ import card from '@/common/svg-helper/icons/card.svg?react';
 import clock from '@/common/svg-helper/icons/clock.svg?react';
 import money from '@/common/svg-helper/icons/money.svg?react';
 import arrow_up from '@/common/svg-helper/icons/arrow_up.svg?react';
+import success_input from '@/common/svg-helper/icons/successInput.svg?react';
+import error from '@/common/svg-helper/icons/error.svg?react';
+
 
 export type IconType = React.FunctionComponent<
     React.SVGProps<SVGSVGElement> & {
@@ -31,7 +34,9 @@ export type ImageComponentsTypes =
     | 'card'
     | 'clock'
     | 'money'
-    | 'arrow_up';
+    | 'arrow_up'
+    | 'success_input'
+    | 'error';
 
 export const ImageComponents: Record<ImageComponentsTypes, IconType> = {
     logo,
@@ -47,4 +52,6 @@ export const ImageComponents: Record<ImageComponentsTypes, IconType> = {
     clock,
     money,
     arrow_up,
+    success_input,
+    error,
 };

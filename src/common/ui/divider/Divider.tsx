@@ -2,11 +2,13 @@ import "@/common/ui/divider/style.scss";
 
 interface IDividerProps {
     classes?: string;
+    position?: 'horizontal' | 'vertical';
+    style?: 'solid' | 'dashed';
 };
 
-const Divider = ({classes = ''}: IDividerProps) => {
+const Divider = ({ classes = '', position = 'horizontal', style = 'solid' }: IDividerProps) => {
     return (
-        <div className={`divider ${classes}`}></div>
+        <div className={`divider ${classes} ${position} ${style}`}></div>
     )
 };
 

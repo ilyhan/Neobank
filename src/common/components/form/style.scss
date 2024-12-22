@@ -1,0 +1,9 @@
+@use "@/common/styles/styleConstants" as *;
+
+.form-wrapper {
+    background-color: $color-total-white;
+    border-radius: $border-radius-xl;
+    box-shadow: $shadow-def;
+    padding: 32px;
+    margin-top: 44px;
+}
