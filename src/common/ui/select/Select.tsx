@@ -1,42 +1,50 @@
-import SvgHelper from "@/common/svg-helper/SvgHelper";
 import Label from "@/common/ui/label/Label";
-import { SelectHTMLAttributes } from "react";
+import { Ref, SelectHTMLAttributes, forwardRef } from "react";
 import "@/common/ui/input/style.scss";
 import { IOption } from "@/common/interfaces/form";
+import { FieldError } from "react-hook-form";
 
 interface ISelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
     label?: string;
-    errorText?: string;
-    isError?: boolean;
+    error?: FieldError;
     isRequired?: boolean;
     containerClass?: string;
     options?: IOption[];
 };
 
-const Select = ({ label, errorText, isError, isRequired = true, containerClass = "", options, ...props }: ISelectProps) => {
-    return (
-        <div className={`input__container ${containerClass}`}>
-            {label && <Label
-                name={props.name}
-                content={label}
-                isRequired={isRequired} />
-            }
+const Select = forwardRef<HTMLSelectElement, ISelectProps>(
+    ({
+        label,
+        error,
+        isRequired = true,
+        containerClass = "",
+        options,
+        ...props
+    }: ISelectProps, ref: Ref<HTMLSelectElement>) => {
 
-            <div className="input__wrapper">
-                <select {...props} className={`input ${props.className} ${isError ? " input_error" : ""}`} >
-                    {options?.map((item) => (
-                        <option key={item.value} value={item.value}>{item.title}</option>
-                    ))}
-                </select>
-
-                {isError != undefined &&
-                    <SvgHelper className="input__icon" iconName={isError ? 'error' : 'success_input'} />
+        return (
+            <div className={`input__container ${containerClass}`}>
+                {label && <Label
+                    name={props.name}
+                    content={label}
+                    isRequired={isRequired} />
                 }
-            </div>
 
-            {isError && errorText && <p className="input__error-message">{errorText}</p>}
-        </div>
-    )
-};
+                <div className="input__wrapper">
+                    <select
+                        ref={ref}
+                        {...props}
+                        className={`input ${props.className ? props.className : ""} ${error ? " input_error" : ""}`} >
+                        {options?.map((item) => (
+                            <option key={item.value} value={item.value}>{item.title}</option>
+                        ))}
+                    </select>
+                </div>
+
+                {error && <p className="input__error-message">{error.message}</p>}
+            </div>
+        )
+    }
+);
 
 export default Select;

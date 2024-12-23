@@ -4,16 +4,29 @@ import "@/common/components/form/prescoring/style.scss";
 import Divider from "@/common/ui/divider/Divider";
 import { ChangeEvent, useState } from "react";
 import Select from "@/common/ui/select/Select";
+import { useForm } from "react-hook-form";
+import { IPrescoring } from "@/common/interfaces/form";
+import { termOptions } from "@/common/arrays/termOptions";
+import { validateAge } from "@/common/helper/validateAge";
 
 const Prescoring = () => {
     const [value, setValue] = useState(0);
+    const {
+        register,
+        formState: { errors, dirtyFields, isSubmitted },
+        handleSubmit
+    } = useForm<IPrescoring>();
 
     const handleSetValue = (e: ChangeEvent<HTMLInputElement>) => {
-        setValue(parseInt(e.target.value));
+        setValue(Number(e.target.value.replace(/\D/g, '')));
+    };
+
+    const submitForm = (data: IPrescoring) => {
+        console.log(data);
     };
 
     return (
-        <form className="prescoring">
+        <form className="prescoring" onSubmit={handleSubmit(submitForm)}>
             <div className="prescoring__header">
                 <div>
                     <div className="prescoring__title-wrapper">
@@ -22,15 +35,28 @@ const Prescoring = () => {
                     </div>
 
                     <Input
+                        {...register("amount", {
+                            required: { value: true, message: "Enter amount" },
+                            min: {
+                                value: 15000,
+                                message: "Incorrect amount"
+                            },
+                            max: {
+                                value: 600000,
+                                message: "Incorrect amount"
+                            },
+                            onChange: handleSetValue,
+                        })}
+                        error={errors.amount}
+                        dirty={isSubmitted && dirtyFields.amount}
+                        name="amount"
+                        type="number"
+                        placeholder="Select amount"
                         label="Select amount"
-                        onChange={handleSetValue}
-                        value={value}
-                        max={5}
-                        required
                     />
                 </div>
 
-                <Divider position="vertical" style="dashed" classes="prescoring__divider"/>
+                <Divider position="vertical" style="dashed" classes="prescoring__divider" />
 
                 <div>
                     <h3 className="prescoring__subtitle">You have chosen the amount</h3>
@@ -42,19 +68,27 @@ const Prescoring = () => {
 
             <div className="prescoring__inputs-wrapper">
                 <Input
+                    {...register("lastName", {
+                        required: { value: true, message: "Enter your last name" }
+                    })}
+                    error={errors.lastName}
+                    dirty={isSubmitted && dirtyFields.lastName}
                     label="Your last name"
                     placeholder="For Example Doe"
-                    name="name"
+                    name="lastName"
                     containerClass="prescoring__input"
-                    required
                 />
 
                 <Input
+                    {...register("firstName", {
+                        required: { value: true, message: "Enter your first name" },
+                    })}
+                    error={errors.firstName}
+                    dirty={isSubmitted && dirtyFields.firstName}
                     label="Your first name"
                     placeholder="For Example Jhon"
-                    name="surname"
+                    name="firstName"
                     containerClass="prescoring__input"
-                    required
                 />
 
                 <Input
@@ -66,43 +100,80 @@ const Prescoring = () => {
                 />
 
                 <Select
+                    {...register("term", {
+                        required: true,
+                    })}
                     label="Select term"
-                    name="range"
+                    name="term"
                     containerClass="prescoring__input"
-                    options={[{title: "6 month", value:"sds"}, {title: "12 month", value:"sds"}, {title: "18 month", value:"sds"}]}
-                    required
+                    options={termOptions}
                 />
 
                 <Input
+                    {...register("email", {
+                        required: { value: true, message: "Enter your email" },
+                        pattern: {
+                            value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                            message: "Incorrect email address"
+                        }
+                    })}
+                    error={errors.email}
+                    dirty={isSubmitted && dirtyFields.email}
                     label="Your email"
                     placeholder="test@gmail.com"
                     name="email"
                     containerClass="prescoring__input"
-                    required
                 />
 
                 <Input
+                    {...register("birthdate", {
+                        required: { value: true, message: "Enter your birth date" },
+                        validate: value => validateAge(value, 18),
+                        pattern: {
+                            value: /^\d{2}-\d{2}-\d{4}$/,
+                            message: "Incorrect date of birth"
+                        }
+                    })}
+                    error={errors.birthdate}
+                    dirty={isSubmitted && dirtyFields.birthdate}
                     label="Your date of birth"
                     placeholder="Select Date and Time"
-                    name="date"
+                    name="birthdate"
                     containerClass="prescoring__input"
-                    required
                 />
 
                 <Input
+                    {...register("passportSeries", {
+                        required: { value: true, message: "Enter your passport series" },
+                        pattern: {
+                            value: /^\d{4}$/,
+                            message: "The series must be 4 digits"
+                        }
+                    })}
+                    error={errors.passportSeries}
+                    dirty={isSubmitted && dirtyFields.passportSeries}
+                    type="number"
                     label="Your passport series"
+                    name="passportSeries"
                     placeholder="0000"
-                    name="seria"
                     containerClass="prescoring__input"
-                    required
                 />
 
                 <Input
+                    {...register("passportNumber", {
+                        required: { value: true, message: "Enter your passport number" },
+                        pattern: {
+                            value: /^\d{6}$/,
+                            message: "The series must be 6 digits"
+                        },
+                    })}
+                    error={errors.passportNumber}
+                    dirty={isSubmitted && dirtyFields.passportNumber}
+                    type="number"
                     label="Your passport number"
                     placeholder="000000"
-                    name="number"
+                    name="passportNumber"
                     containerClass="prescoring__input"
-                    required
                 />
             </div>
 
