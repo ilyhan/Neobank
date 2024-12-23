@@ -63,6 +63,15 @@
             scale: 0.98;
         }
     }
+
+    &__error {
+        @include clampText($text-m-main, $text-main);
+        font-weight: 500;
+        width: fit-content;
+        margin-inline: auto 0;
+        color: $color-red-error;
+        margin: 0px 0px 10px auto;
+    }
 }
 
 @media (max-width: $tablet) {
@@ -74,7 +83,7 @@
             margin-bottom: 20px;
         }
 
-        &__divider{
+        &__divider {
             display: none;
         }
     }
@@ -82,7 +91,7 @@
 
 @media (max-width: $mobile) {
     .prescoring {
-        &__title-wrapper{
+        &__title-wrapper {
             flex-direction: column;
             align-items: start;
             margin-bottom: 15px;

@@ -42,7 +42,7 @@ function useMutation<T, U>({ mutateFn }: IQueryOptions<T, U>): IUseQueryResult<T
         error,
         isLoading,
         isSuccess: error === null,
-        isError: error !== null,
+        isError: error !== undefined,
         mutate
     };
 }

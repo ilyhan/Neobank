@@ -1,75 +1,54 @@
 import Button from "@/common/ui/button/Button";
 import Input from "@/common/ui/input/Input"
 import "@/common/components/form/prescoring/style.scss";
-import Divider from "@/common/ui/divider/Divider";
-import { ChangeEvent, useState } from "react";
+import { useEffect } from "react";
 import Select from "@/common/ui/select/Select";
 import { useForm } from "react-hook-form";
 import { IPrescoring } from "@/common/interfaces/form";
 import { termOptions } from "@/common/arrays/termOptions";
 import { validateAge } from "@/common/helper/validateAge";
+import { usePostPrescoring } from "@/api/hookApi";
+import Loader from "@/common/components/loader/Loader";
+import PrescoringHeader from "./PrescoringHeader";
 
 const Prescoring = () => {
-    const [value, setValue] = useState(0);
     const {
         register,
         formState: { errors, dirtyFields, isSubmitted },
-        handleSubmit
+        handleSubmit,
+        reset,
     } = useForm<IPrescoring>();
 
-    const handleSetValue = (e: ChangeEvent<HTMLInputElement>) => {
-        setValue(Number(e.target.value.replace(/\D/g, '')));
-    };
+    const { 
+        isLoading, 
+        isSuccess, 
+        mutate, 
+        isError 
+    } = usePostPrescoring();
 
     const submitForm = (data: IPrescoring) => {
-        console.log(data);
+        mutate(data);
     };
+
+    useEffect(() => {
+        if (isSuccess) {
+            reset();
+        }
+    }, [isSuccess]);
 
     return (
         <form className="prescoring" onSubmit={handleSubmit(submitForm)}>
-            <div className="prescoring__header">
-                <div>
-                    <div className="prescoring__title-wrapper">
-                        <h2 className="prescoring__title">Customize your card</h2>
-                        <p className="prescoring__step">Step 1 of 5</p>
-                    </div>
-
-                    <Input
-                        {...register("amount", {
-                            required: { value: true, message: "Enter amount" },
-                            min: {
-                                value: 15000,
-                                message: "Incorrect amount"
-                            },
-                            max: {
-                                value: 600000,
-                                message: "Incorrect amount"
-                            },
-                            onChange: handleSetValue,
-                        })}
-                        error={errors.amount}
-                        dirty={isSubmitted && dirtyFields.amount}
-                        name="amount"
-                        type="number"
-                        placeholder="Select amount"
-                        label="Select amount"
-                    />
-                </div>
-
-                <Divider position="vertical" style="dashed" classes="prescoring__divider" />
-
-                <div>
-                    <h3 className="prescoring__subtitle">You have chosen the amount</h3>
-                    <p className="prescoring__amount">{value + " ₽"}</p>
-                </div>
-            </div>
+            <PrescoringHeader
+                register={register}
+                error={errors.amount}
+                dirty={isSubmitted && dirtyFields.amount}
+            />
 
             <h3 className="prescoring__subtitle">Contact Information</h3>
-
             <div className="prescoring__inputs-wrapper">
                 <Input
                     {...register("lastName", {
-                        required: { value: true, message: "Enter your last name" }
+                        required: { value: true, message: "Enter your last name" },
                     })}
                     error={errors.lastName}
                     dirty={isSubmitted && dirtyFields.lastName}
@@ -130,8 +109,8 @@ const Prescoring = () => {
                         required: { value: true, message: "Enter your birth date" },
                         validate: value => validateAge(value, 18),
                         pattern: {
-                            value: /^\d{2}-\d{2}-\d{4}$/,
-                            message: "Incorrect date of birth"
+                            value: /^\d{4}-\d{2}-\d{2}$/,
+                            message: "Expected YYYY-MM-DD"
                         }
                     })}
                     error={errors.birthdate}
@@ -177,8 +156,13 @@ const Prescoring = () => {
                 />
             </div>
 
-            <Button type="submit" classes="prescoring__button">
-                Continue
+            {isError && <p className="prescoring__error">Sorry, an error has occurred</p>}
+
+            <Button type="submit" classes="prescoring__button" disabled={isLoading}>
+                {isLoading
+                    ? <Loader style={{ width: "20px" }} />
+                    : "Continue"
+                }
             </Button>
         </form>
     )

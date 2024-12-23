@@ -1,9 +1,7 @@
 
 export const validateAge = (value: string | Date, age: number): boolean | string => {
     const currentDate = new Date();
-    const date = new Date(typeof (value) == 'string'
-        ? value.split('-').reverse().join('-')
-        : value);
+    const date = new Date(value);
 
     if (isNaN(date.getTime())) {
         return "Incorrect date";
