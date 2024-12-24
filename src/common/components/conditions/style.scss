@@ -4,7 +4,7 @@
 .conditions {
     &__list {
         width: 100%;
-        margin-top: 20px;
+        margin-top: 30px;
     }
 
     &__item {
@@ -28,16 +28,21 @@
     }
 
     &__descriptions {
-        color: $color-grey-divider;
+        color: $color-grey-condition;
     }
 
     &__divider {
-        height: 1px;
+        border-top: 1px solid $color-grey-divider !important;
     }
 }
 
 @media (max-width: $mobile){
     .conditions{
+        &__list {
+            width: 100%;
+            margin-top: 20px;
+        }
+
         &__title {
             min-width: 120px;
             width: 120px;

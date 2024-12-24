@@ -2,8 +2,21 @@ import Button from "@/common/ui/button/Button";
 import card from "/public/images/cardsDesign/cardDesign1.png";
 import "@/common/components/creditCard/style.scss";
 import DetailsList from "@/common/components/creditCard/DetailsList";
+import { RefObject } from "react";
 
-const CreditCard = () => {
+interface ICreditCardProps {
+    formRef?: RefObject<HTMLElement>;
+};
+
+const CreditCard = ({ formRef }: ICreditCardProps) => {
+    const handleClick = () => {
+        if (formRef?.current) {
+            formRef.current.scrollIntoView({
+                behavior: "smooth",
+            });
+        }
+    };
+
     return (
         <section className="credit-card">
             <div className="credit-card__content">
@@ -20,7 +33,7 @@ const CreditCard = () => {
 
                 <DetailsList />
 
-                <Button classes="credit-card__button">
+                <Button onClick={handleClick} classes="credit-card__button">
                     Apply for card
                 </Button>
             </div>

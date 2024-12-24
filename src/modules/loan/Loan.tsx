@@ -3,14 +3,17 @@ import CreditCardTabs from "@/common/components/creditCardTabs/CreditCardTabs";
 import FormCard from "@/common/components/form/FormCard";
 import Steps from "@/common/components/stepsGetCard/Steps";
 import "@/modules/loan/style.scss";
+import { useRef } from "react";
 
 const Loan = () => {
+    const formSecion = useRef<HTMLElement>(null);
+
     return (
         <main className="main">
-            <CreditCard />
+            <CreditCard formRef={formSecion}/>
             <CreditCardTabs />
             <Steps />
-            <FormCard />
+            <FormCard ref={formSecion} />
         </main>
     )
 };

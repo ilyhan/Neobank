@@ -22,3 +22,11 @@
         }
     }
 }
+
+@media (max-width: $mobile) {
+    .faq{
+        &__wrapper{
+            margin-top: 20px;
+        }
+    }
+}

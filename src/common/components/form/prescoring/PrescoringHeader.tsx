@@ -1,3 +1,4 @@
+import { formatAmount } from "@/common/helper/formatAmount";
 import { IPrescoring } from "@/common/interfaces/form";
 import Divider from "@/common/ui/divider/Divider";
 import Input from "@/common/ui/input/Input";
@@ -51,7 +52,7 @@ const PrescoringHeader = ({ register, error, dirty }: IPrescoringHeaderProps) =>
 
             <div>
                 <h3 className="prescoring__subtitle">You have chosen the amount</h3>
-                <p className="prescoring__amount">{value + " ₽"}</p>
+                <p className="prescoring__amount">{formatAmount(value) + " ₽"}</p>
             </div>
         </div>
     )

@@ -1,8 +1,8 @@
 import { cardConditions } from "@/common/arrays/cardConditions";
 import RenderList from "@/common/helper/RenderList";
-import "@/common/components/conditions/style.scss";
 import Divider from "@/common/ui/divider/Divider";
 import { ICardConditions } from "@/common/interfaces/card";
+import "@/common/components/conditions/style.scss";
 
 const Conditions = () => {
     return (

@@ -2,7 +2,7 @@
 @use "@/common/styles/styleConstants" as *;
 
 .cashback {
-    margin-top: 50px;
+    margin-top: 32px;
 
     &__list {
         display: flex;
@@ -20,6 +20,8 @@
 
 @media (max-width: $mobile){
     .cashback{
+        margin-top: 20px;
+        
         &__list{
             gap: 20px;
         }

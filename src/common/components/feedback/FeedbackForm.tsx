@@ -4,6 +4,7 @@ import Button from "@/common/ui/button/Button";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import Loader from "@/common/components/loader/Loader";
 import "@/common/components/feedback/style.scss";
+import { emailPattern } from "@/common/helper/validationPatterns";
 
 interface IFeedbackFormPprops {
     setSubscribe: (_: boolean) => void;
@@ -17,7 +18,7 @@ const FeedbackForm = ({ setSubscribe }: IFeedbackFormPprops) => {
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
 
-        if (input.current && /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(input.current.value)) {
+        if (input.current && emailPattern.test(input.current.value)) {
             mutate(input.current.value);
         }
         else {

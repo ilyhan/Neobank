@@ -2,7 +2,11 @@
 @use "@/common/styles/styleConstants" as *;
 
 .accordion {
-    list-style: none;
+    padding: 32px;
+
+    &__details {
+        list-style: none;
+    }
 
     &__summary {
         @include clampText($text-m-main, $text-main);
@@ -11,17 +15,16 @@
         color: $color-dim-black;
     }
 
-    &>&__summary {
+    &__details>&__summary {
         list-style: none;
         @include flexBetween;
-        padding: 32px;
 
-        &:hover{
+        &:hover {
             cursor: pointer;
         }
     }
 
-    &[open] &__icon {
+    &__details[open] &__icon {
         transform: rotate(0deg);
     }
 
@@ -31,11 +34,31 @@
         min-width: 24px;
     }
 
-    &__text{
-        @include clampText($text-m-main, $text-main);
-        font-weight: 400;
-        color: $color-details;
-        margin-block: 25px;
-        padding-inline: 32px;
+    &__content {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: $transition-fast;
+
+        &-body {
+            @include clampText($text-m-main, $text-main);
+            font-weight: 400;
+            color: $color-details;
+            overflow: hidden;
+        }
+    }
+
+    &__details[open]+&__content {
+        grid-template-rows: 1fr;
+        margin-top: 32px;
+    }
+}
+
+@media (max-width: $mobile) {
+    .accordion {
+        padding: 20px;
+
+        &__details[open]+&__content {
+            margin-top: 20px;
+        }
     }
 }

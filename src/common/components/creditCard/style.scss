@@ -5,7 +5,7 @@
     width: 100%;
     padding: 48px 32px;
     border-radius: $border-radius-xl;
-    box-shadow: $shadow-input;
+    box-shadow: $shadow-def;
     background: $light-soft-gradient;
     display: flex;
     align-items: center;
@@ -138,6 +138,10 @@
             justify-content: center;
             gap: 20px;
             padding-right: 0px;
+        }
+
+        &__button{
+            padding: 12px 14px;
         }
     }
 }

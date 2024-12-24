@@ -4,7 +4,7 @@
 .card-cashback {
     @include cardStyle;
     height: 163px;
-
+    
     &__title {
         @include clampText($text-m-main, $text-main);
         font-weight: 500;

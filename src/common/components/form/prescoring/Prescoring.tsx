@@ -9,7 +9,13 @@ import { termOptions } from "@/common/arrays/termOptions";
 import { validateAge } from "@/common/helper/validateAge";
 import { usePostPrescoring } from "@/api/hookApi";
 import Loader from "@/common/components/loader/Loader";
-import PrescoringHeader from "./PrescoringHeader";
+import PrescoringHeader from "@/common/components/form/prescoring/PrescoringHeader";
+import {
+    dateBirthPattern,
+    emailPattern,
+    passportNumberPattern,
+    passportSeriesPattern,
+} from "@/common/helper/validationPatterns";
 
 const Prescoring = () => {
     const {
@@ -19,11 +25,11 @@ const Prescoring = () => {
         reset,
     } = useForm<IPrescoring>();
 
-    const { 
-        isLoading, 
-        isSuccess, 
-        mutate, 
-        isError 
+    const {
+        isLoading,
+        isSuccess,
+        mutate,
+        isError
     } = usePostPrescoring();
 
     const submitForm = (data: IPrescoring) => {
@@ -92,7 +98,7 @@ const Prescoring = () => {
                     {...register("email", {
                         required: { value: true, message: "Enter your email" },
                         pattern: {
-                            value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                            value: emailPattern,
                             message: "Incorrect email address"
                         }
                     })}
@@ -109,7 +115,7 @@ const Prescoring = () => {
                         required: { value: true, message: "Enter your birth date" },
                         validate: value => validateAge(value, 18),
                         pattern: {
-                            value: /^\d{4}-\d{2}-\d{2}$/,
+                            value: dateBirthPattern,
                             message: "Expected YYYY-MM-DD"
                         }
                     })}
@@ -125,7 +131,7 @@ const Prescoring = () => {
                     {...register("passportSeries", {
                         required: { value: true, message: "Enter your passport series" },
                         pattern: {
-                            value: /^\d{4}$/,
+                            value: passportSeriesPattern,
                             message: "The series must be 4 digits"
                         }
                     })}
@@ -142,7 +148,7 @@ const Prescoring = () => {
                     {...register("passportNumber", {
                         required: { value: true, message: "Enter your passport number" },
                         pattern: {
-                            value: /^\d{6}$/,
+                            value: passportNumberPattern,
                             message: "The series must be 6 digits"
                         },
                     })}

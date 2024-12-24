@@ -12,14 +12,18 @@ interface IAccordionProps {
 
 const Accordion = ({ summary, text, name, detailsClass = '', summaryClass = '', textClass = '' }: IAccordionProps) => {
     return (
-        <details name={name} className={"accordion " + detailsClass}>
-            <summary className={"accordion__summary " + summaryClass}>
-                {summary}
-                <SvgHelper iconName="arrow_up" className="accordion__icon"/>
-            </summary>
-
-            <p className={"accordion__text" + textClass}>{text}</p>
-        </details>
+        <div className="accordion">
+            <details name={name} className={"accordion__details " + detailsClass}>
+                <summary className={"accordion__summary " + summaryClass}>
+                    {summary}
+                    <SvgHelper iconName="arrow_up" className="accordion__icon" />
+                </summary>
+            </details>
+            
+            <div className="accordion__content" role="definition">
+                <p className={"accordion__content-body" + textClass}>{text}</p>
+            </div>
+        </div>
     )
 };
 
