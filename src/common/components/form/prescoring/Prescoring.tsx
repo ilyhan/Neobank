@@ -16,6 +16,8 @@ import {
     passportNumberPattern,
     passportSeriesPattern,
 } from "@/common/helper/validationPatterns";
+import { validatePrescoring } from "@/common/helper/validatePrescoring";
+import { validateEmpty } from "@/common/helper/validateEmpty";
 
 const Prescoring = () => {
     const {
@@ -33,7 +35,7 @@ const Prescoring = () => {
     } = usePostPrescoring();
 
     const submitForm = (data: IPrescoring) => {
-        mutate(data);
+        mutate(validatePrescoring(data));
     };
 
     useEffect(() => {
@@ -54,6 +56,7 @@ const Prescoring = () => {
             <div className="prescoring__inputs-wrapper">
                 <Input
                     {...register("lastName", {
+                        validate: value => validateEmpty(value),
                         required: { value: true, message: "Enter your last name" },
                     })}
                     error={errors.lastName}
@@ -66,6 +69,7 @@ const Prescoring = () => {
 
                 <Input
                     {...register("firstName", {
+                        validate: value => validateEmpty(value),
                         required: { value: true, message: "Enter your first name" },
                     })}
                     error={errors.firstName}
@@ -113,10 +117,10 @@ const Prescoring = () => {
                 <Input
                     {...register("birthdate", {
                         required: { value: true, message: "Enter your birth date" },
-                        validate: value => validateAge(value, 18),
+                        validate: value => validateAge(value as string, 18),
                         pattern: {
                             value: dateBirthPattern,
-                            message: "Expected YYYY-MM-DD"
+                            message: "Expected DD.MM.YYYY"
                         }
                     })}
                     error={errors.birthdate}

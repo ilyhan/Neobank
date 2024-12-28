@@ -1,7 +1,11 @@
 
-export const validateAge = (value: string | Date, age: number): boolean | string => {
+export const validateAge = (value: string, age: number): boolean | string => {
     const currentDate = new Date();
-    const date = new Date(value);
+
+    const dateArray = value.split('.');
+    const dateString = `${dateArray[2]}-${dateArray[1]}-${dateArray[0]}`;
+
+    const date = new Date(dateString);
 
     if (isNaN(date.getTime())) {
         return "Incorrect date";
