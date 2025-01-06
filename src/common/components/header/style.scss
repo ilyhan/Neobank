@@ -40,6 +40,7 @@
         font-weight: 700;
         line-height: 18px;
         @include clampText($text-m-main, $text-main);
+        z-index: 12;
 
         @media(hover: hover) {
             &:hover {
@@ -74,7 +75,8 @@
             border-bottom-left-radius: $border-radius-m;
             box-shadow: $shadow-input;
             transition: $transition-medium;
-
+            z-index: 10;
+            
             &_active {
                 translate: -230px;
             }

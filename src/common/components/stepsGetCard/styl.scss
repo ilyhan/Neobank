@@ -1,0 +1,72 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.steps {
+    width: 100%;
+    margin-top: 96px;
+
+    &__title {
+        @include clampText($text-m-small-title, $text-small-title);
+        font-weight: 700;
+        line-height: 44px;
+        text-align: center;
+    }
+
+    &__list {
+        @include flexBetween;
+        gap: 100px;
+    }
+
+    &__item-wrapper {
+        @include flexBetween;
+        gap: 36px;
+        margin-block: 14px 20px;
+    }
+
+    &__item-number {
+        @include flexCenter;
+        @include clampText($text-m-medium, $text-medium);
+        font-weight: 700;
+        height: 48px;
+        aspect-ratio: 1;
+        background-color: $color-grey;
+        border-radius: $border-circle;
+    }
+
+    &__description {
+        text-align: center;
+        @include clampText($text-m-main, $text-main);
+        font-weight: 500;
+        padding-inline: 20px;
+    }
+}
+
+@media (max-width: $tablet){
+    .steps {
+        margin-top: 70px;
+
+        &__list {
+            gap: 50px;
+        }
+
+        &__item-wrapper {
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        &__item-number {
+            height: 38px;
+        }
+    }
+}
+
+@media (max-width: $mobile){
+    .steps {
+        margin-top: 50px;
+
+        &__list {
+            flex-direction: column;
+            gap: 20px;
+        }
+    }
+}

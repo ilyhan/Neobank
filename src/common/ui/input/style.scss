@@ -1,0 +1,59 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.input {
+    width: 100%;
+    height: 40px;
+    padding-inline: 16px 40px;
+    background-color: $color-input;
+    border-radius: $border-radius-xs;
+    border: 1px solid $color-medium-gre-tr;
+    @include clampText($text-m-main, $text-main);
+    font-weight: 400;
+    line-height: 14px;
+    outline: none;
+
+    &:focus {
+        border-color: $color-input-focus;
+        outline: 1px solid $color-input-focus;
+    }
+
+    &::placeholder {
+        @include clampText($text-m-small, $text-small);
+        color: $color-medium-grey;
+    }
+
+    &_error {
+        outline: none !important;
+        border: 2px solid $color-red-error !important;
+    }
+
+    &__container {
+        position: relative;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__wrapper {
+        position: relative;
+        margin-block: 8px 2px;
+        margin-bottom: 20px;
+    }
+
+    &__icon {
+        position: absolute;
+        top: 50%;
+        right: 16px;
+        transform: translate(0, -50%);
+    }
+
+    &__error-message {
+        @include clampText($text-m-main, $text-main);
+        position: absolute;
+        bottom: 0;
+        font-weight: 500;
+        line-height: 16px;
+        color: $color-red-error;
+    }
+}

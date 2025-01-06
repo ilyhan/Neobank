@@ -1,0 +1,112 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.prescoring {
+
+    &__header {
+        display: grid;
+        grid-template-columns: 1fr 1px 1fr;
+        gap: 40px
+    }
+
+    &__title-wrapper {
+        @include flexBetween;
+    }
+
+    &__step {
+        @include clampText($text-m-main, $text-main);
+        font-weight: 500;
+        line-height: 16px;
+    }
+
+    &__amount {
+        @include clampText($text-m-main, $text-main);
+        font-weight: 500;
+        line-height: 16px;
+        width: 220px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid $color-medium-gre-tr;
+    }
+
+    &__inputs-wrapper {
+        display: flex;
+        column-gap: 20px;
+        row-gap: 5px;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+    }
+
+    &__input {
+        min-width: 290px;
+        flex: 1;
+    }
+
+    &__button {
+        padding: 16px 38px;
+        border-radius: $border-radius-s;
+        background-color: $color-bright-blue;
+        color: $color-total-white;
+        box-shadow: $shadow-def;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        line-height: 18px;
+        @include clampText($text-m-main, $text-main);
+        margin-inline: auto 0;
+
+        @media(hover: hover) {
+            &:hover {
+                background-color: $color-hover-blue;
+            }
+        }
+
+        &:active {
+            scale: 0.98;
+        }
+    }
+
+    &__error {
+        @include clampText($text-m-main, $text-main);
+        font-weight: 500;
+        width: fit-content;
+        margin-inline: auto 0;
+        color: $color-red-error;
+        margin: 0px 0px 10px auto;
+    }
+}
+
+@media (max-width: $tablet) {
+    .prescoring {
+        &__header {
+            display: flex;
+            flex-direction: column;
+            gap: 0px;
+            margin-bottom: 20px;
+        }
+
+        &__divider {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: $mobile) {
+    .prescoring {
+        &__title-wrapper {
+            flex-direction: column;
+            align-items: start;
+            margin-bottom: 15px;
+        }
+
+        &__input {
+            min-width: 100%;
+        }
+
+        &__amount {
+            width: 100%;
+        }
+
+        &__button {
+            padding: 12px 20px;
+        }
+    }
+}

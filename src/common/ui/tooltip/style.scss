@@ -1,0 +1,38 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+
+    &__title {
+        background: none;
+        border: none;
+        cursor: pointer;
+
+        &:hover+.tooltip__content {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+
+    &__content {
+        @include clampText($text-m-extra-small, $text-extra-small);
+        visibility: hidden;
+        position: absolute;
+        top: 110%;
+        left: 50%;
+        width: 100%;
+        text-align: center;
+        font-weight: 500;
+        line-height: 12px;
+        letter-spacing: 0.02em;
+        background-color: $color-deep-grey;
+        color: $color-total-white;
+        padding: 9px 7px;
+        opacity: 0;
+        transform: translateX(-50%);
+        transition: opacity 0.3s ease;
+        z-index: 5;
+    }
+}

@@ -1,0 +1,17 @@
+@use "@/common/styles/styleConstants" as *;
+
+.divider {
+    width: 100%;
+    height: 0px;
+    border-top: 2px solid $color-medium-gre-tr;
+}
+
+.vertical {
+    width: 0px;
+    height: 100%;
+    border: 1px solid $color-medium-gre-tr;
+}
+
+.dashed {
+    border-style: dashed;
+}
