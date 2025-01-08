@@ -24,14 +24,14 @@
     }
 
     &__description {
-        @include clampText($text-m-main, $text-m-main);
+        @include clampText($text-m-main, $text-main);
         font-weight: 500;
         line-height: 18px;
         color: $color-grey-back;
     }
 
     &__button {
-        @include clampText($text-m-main, $text-m-main);
+        @include clampText($text-m-main, $text-main);
         font-weight: 700;
         line-height: 18px;
         letter-spacing: 0.02em;

@@ -2,13 +2,31 @@ import Button from "@/common/ui/button/Button";
 import card from "/public/images/cardsDesign/cardDesign1.png";
 import "@/common/components/creditCard/style.scss";
 import DetailsList from "@/common/components/creditCard/DetailsList";
-import { RefObject } from "react";
+import { ReactNode, RefObject } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
+import { EApplicationStep } from "@/common/enums/application";
 
 interface ICreditCardProps {
     formRef?: RefObject<HTMLElement>;
 };
 
 const CreditCard = ({ formRef }: ICreditCardProps) => {
+    const step = useSelector((state: RootState) => state.applicationReducer.step);
+
+    const setTextButton = (): ReactNode => {
+        switch (step) {
+            case EApplicationStep.OFFERS:
+                return <span>{"Choose an offer"}</span>;
+            case EApplicationStep.SCORING:
+                return <span style={{ paddingInline: '16px' }}>
+                    {"Continue"}<br /> {"registration"}
+                </span>;
+            default:
+                return <span>{"Apply for card"}</span>;
+        }
+    };
+
     const handleClick = () => {
         if (formRef?.current) {
             formRef.current.scrollIntoView({
@@ -34,7 +52,7 @@ const CreditCard = ({ formRef }: ICreditCardProps) => {
                 <DetailsList />
 
                 <Button onClick={handleClick} classes="credit-card__button">
-                    Apply for card
+                    {setTextButton()}
                 </Button>
             </div>
 

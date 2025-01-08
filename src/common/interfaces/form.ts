@@ -15,3 +15,14 @@ export interface IPrescoring {
     passportSeries: string;
     passportNumber: string;
 }
+
+export interface IOffer {
+    applicationId: number;
+    requestedAmount: number;
+    totalAmount: number;
+    term: number;
+    monthlyPayment: number;
+    rate: number;
+    isInsuranceEnabled: boolean;
+    isSalaryClient: boolean;
+}

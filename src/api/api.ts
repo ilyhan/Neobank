@@ -1,4 +1,4 @@
-import { IPrescoring } from "@/common/interfaces/form";
+import { IOffer, IPrescoring } from "@/common/interfaces/form";
 import axios from "axios";
 
 export const baseUrl = "http://localhost:8080";
@@ -10,7 +10,13 @@ export const subscribeNews = async (data: string) => {
 };
 
 //отпрвка prescoring
-export const postPrescroring = async (data: IPrescoring) => {
-    const response = await axios.post(`${baseUrl}/application`, data);
+export const postPrescroring = async (data: IPrescoring): Promise<IOffer[]> => {
+    const response = await axios.post<IOffer[]>(`${baseUrl}/application`, data);
     return response.data;
 };
+
+//отправка выбранного предложения 
+export const postApplicationApply = async (data: IOffer) => {
+    const response = await axios.post(`${baseUrl}/application/apply`, data);
+    return response.data;
+}

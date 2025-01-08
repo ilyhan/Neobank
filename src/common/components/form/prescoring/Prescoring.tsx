@@ -18,6 +18,7 @@ import {
 } from "@/common/helper/validationPatterns";
 import { validatePrescoring } from "@/common/helper/validatePrescoring";
 import { validateEmpty } from "@/common/helper/validateEmpty";
+import { useActions } from "@/store/actions";
 
 const Prescoring = () => {
     const {
@@ -31,8 +32,11 @@ const Prescoring = () => {
         isLoading,
         isSuccess,
         mutate,
-        isError
+        isError,
+        data
     } = usePostPrescoring();
+
+    const { setApplicationData } = useActions()
 
     const submitForm = (data: IPrescoring) => {
         mutate(validatePrescoring(data));
@@ -40,6 +44,9 @@ const Prescoring = () => {
 
     useEffect(() => {
         if (isSuccess) {
+            if(data){
+                setApplicationData(data);
+            }
             reset();
         }
     }, [isSuccess]);
