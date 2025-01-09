@@ -11,7 +11,7 @@ import { usePostPrescoring } from "@/api/hookApi";
 import Loader from "@/common/components/loader/Loader";
 import PrescoringHeader from "@/common/components/form/prescoring/PrescoringHeader";
 import {
-    dateBirthPattern,
+    datePattern,
     emailPattern,
     passportNumberPattern,
     passportSeriesPattern,
@@ -126,7 +126,7 @@ const Prescoring = () => {
                         required: { value: true, message: "Enter your birth date" },
                         validate: value => validateAge(value as string, 18),
                         pattern: {
-                            value: dateBirthPattern,
+                            value: datePattern,
                             message: "Expected DD.MM.YYYY"
                         }
                     })}

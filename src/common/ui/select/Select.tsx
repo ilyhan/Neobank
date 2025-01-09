@@ -10,6 +10,7 @@ interface ISelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
     isRequired?: boolean;
     containerClass?: string;
     options?: IOption[];
+    withEmptyPlacholder?: boolean;
 };
 
 const Select = forwardRef<HTMLSelectElement, ISelectProps>(
@@ -19,6 +20,7 @@ const Select = forwardRef<HTMLSelectElement, ISelectProps>(
         isRequired = true,
         containerClass = "",
         options,
+        withEmptyPlacholder = false,
         ...props
     }: ISelectProps, ref: Ref<HTMLSelectElement>) => {
 
@@ -34,7 +36,10 @@ const Select = forwardRef<HTMLSelectElement, ISelectProps>(
                     <select
                         ref={ref}
                         {...props}
-                        className={`input ${props.className ? props.className : ""} ${error ? " input_error" : ""}`} >
+                        className={`input ${props.className ? props.className : ""} ${error ? " input_error" : ""}`}
+                        defaultValue={withEmptyPlacholder ? "" : undefined} 
+                    >
+                        {withEmptyPlacholder && <option value="" hidden disabled></option>}
                         {options?.map((item) => (
                             <option key={item.value} value={item.value}>{item.title}</option>
                         ))}

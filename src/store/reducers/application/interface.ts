@@ -5,4 +5,5 @@ export interface IApplicationInitial {
     applicationId: number | null;
     offers: IOffer[] | null;
     step: EApplicationStep;
+    isSentScoring: boolean;
 }

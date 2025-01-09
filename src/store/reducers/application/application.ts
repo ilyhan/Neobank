@@ -13,6 +13,7 @@ const getApplicationData = (): IApplicationInitial => {
                 applicationId: null,
                 offers: null,
                 step: EApplicationStep.PRESCORING,
+                isSentScoring: false,
             };
         }
     }
@@ -20,6 +21,7 @@ const getApplicationData = (): IApplicationInitial => {
         applicationId: null,
         offers: null,
         step: EApplicationStep.PRESCORING,
+        isSentScoring: false,
     };
 };
 
@@ -36,9 +38,14 @@ const applicationSlice = createSlice({
 
             localStorage.setItem('application', JSON.stringify(state));
         },
-        
+
         setStepScoring(state) {
             state.step = EApplicationStep.SCORING;
+            localStorage.setItem('application', JSON.stringify(state));
+        },
+
+        setSentScroring(state) {
+            state.isSentScoring = true;
             localStorage.setItem('application', JSON.stringify(state));
         }
     }

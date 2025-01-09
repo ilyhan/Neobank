@@ -5,7 +5,7 @@ import Offers from "@/common/components/offers/Offers";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { EApplicationStep } from "@/common/enums/application";
-import ContinueRegistration from "@/common/components/continueRegistration/ContinueRegistration";
+import ContinueRegistration from "@/common/components/messages/continueRegistration/ContinueRegistration";
 
 const FormCard = forwardRef<HTMLElement, any>((_, ref: Ref<HTMLElement>) => {
     const step = useSelector((state: RootState) => state.applicationReducer.step);

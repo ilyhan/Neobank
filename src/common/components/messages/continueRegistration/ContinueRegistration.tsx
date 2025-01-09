@@ -1,4 +1,4 @@
-import "@/common/components/continueRegistration/style.scss";
+import "@/common/components/messages/continueRegistration/style.scss";
 
 const ContinueRegistration = () => {
     return (
