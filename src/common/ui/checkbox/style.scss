@@ -1,0 +1,55 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.checkbox {
+    display: none;
+    visibility: hidden;
+
+    &__icon {
+        float: left;
+        width: 20px;
+        height: 20px;
+        border-radius: $border-radius-xxs;
+        @include flexCenter;
+        border: 1px solid $color-medium-grey;
+        transition: $transition-fast;
+    }
+
+    &__icon svg {
+        fill: none;
+        stroke: $color-total-white;
+        stroke-width: 3;
+        stroke-dasharray: 17;
+        stroke-dashoffset: 17;
+        transform: translate3d(0, 0, 0);
+        stroke-linecap: butt;
+        stroke-linejoin: butt;
+    }
+
+    &__label-text {
+        @include clampText($text-m-up-main, $text-up-main);
+        font-weight: 400;
+        line-height: 20px;
+        float: left;
+        margin-left: 14px;
+        color: $color-dark-label;
+    }
+
+    &__wrapper {
+        user-select: none;
+    }
+
+    &__wrapper label {
+        cursor: pointer;
+    }
+
+    &:checked+&__icon {
+        background-color: $color-checkbox;
+        border: none;
+    }
+
+    &:checked+&__icon svg {
+        stroke-dashoffset: 0;
+        transition: $transition-fast;
+    }
+}

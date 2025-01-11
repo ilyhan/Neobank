@@ -18,11 +18,7 @@ const ScoringLayout = () => {
     }
 
     const isSent = useSelector((state: RootState) => state.applicationReducer.isSentScoring);
-    const { data, isLoading, refetch } = useQueryApplication(appId);
-
-    useEffect(() => {
-        refetch();
-    }, []);
+    const { data, isLoading } = useQueryApplication(appId);
 
     useEffect(() => {
         if (data) {

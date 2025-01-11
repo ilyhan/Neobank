@@ -36,6 +36,6 @@ export const usePostScoring = (applicationId: number) => {
 export const useQueryApplication = (applicationId: number | string) => {
     return useQuery({
         queryFn: () => getApplication(applicationId),
-        staleTime: -1,
+        staleTime: 0,
     });
 };

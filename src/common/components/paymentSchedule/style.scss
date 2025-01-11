@@ -1,0 +1,64 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.schedule {
+    background-color: $color-total-white;
+    border-radius: $border-radius-xl;
+    box-shadow: $shadow-def;
+    padding: 32px;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 80px;
+        margin-bottom: 76px;
+    }
+
+    &__title {
+        @include clampText($text-m-small-title, $text-small-title);
+        font-weight: 700;
+        color: $color-dim-black;
+    }
+
+    &__step {
+        @include clampText($text-m-main, $text-main);
+        font-weight: 500;
+        line-height: 16px;
+    }
+
+    &__actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 44px;
+    }
+
+    &__form {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+    }
+
+    &__button {
+        @include styledButton;
+
+        & {
+            padding: 11px 28px;
+        }
+
+        &_deny {
+            background-color: $color-red-deny;
+        }
+    }
+}
+
+@media (max-width: $tablet) {
+    .schedule {
+        &__header {
+            display: flex;
+            flex-direction: column;
+            gap: 0px;
+            margin-bottom: 20px;
+        }
+    }
+}

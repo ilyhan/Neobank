@@ -1,0 +1,40 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.table {
+    width: 100%;
+    overflow-x: auto;
+
+    &__wrapper{
+        width: 100%;
+        overflow: auto;
+    }
+
+    & th,
+    & td {
+        padding-block: 14px;
+        border-bottom: 1px solid $color-border;
+    }
+
+    & td {
+        @include clampText($text-m-extra-small, $text-extra-small);
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        color: $color-dark-label;
+        max-width: 200px;
+        overflow-wrap: break-word; 
+        word-wrap: break-word; 
+        word-break: break-all; 
+    }
+
+    & th {
+        @include clampText($text-m-extra-small, $text-extra-small);
+        font-weight: 500;
+        line-height: 18px;
+        letter-spacing: 0.02em;
+        text-align: left;
+        color: $color-grey-th;
+        text-transform: uppercase;
+        padding-right: 100px;
+    }
+}

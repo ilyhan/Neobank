@@ -36,18 +36,16 @@ function useQuery<T>({ queryFn, staleTime = 0 }: IQueryOptions<T>): IUseQueryRes
     };
 
     useEffect(() => {
-        if (staleTime != -1) {
-            if (isStale || staleTime == 0) {
-                fetchData();
-            } else {
-                const timer = setTimeout(() => {
-                    setIsStale(true);
-                }, staleTime);
+        if (isStale || staleTime == 0) {
+            fetchData();
+        } else {
+            const timer = setTimeout(() => {
+                setIsStale(true);
+            }, staleTime);
 
-                return () => clearTimeout(timer);
-            }
-        } 
-    }, [isStale, queryFn, staleTime]);
+            return () => clearTimeout(timer);
+        }
+    }, [isStale, staleTime]);
 
     const refetch = async () => {
         fetchData();
