@@ -1,4 +1,5 @@
 import Document from "@/modules/document/Document";
+import DocumentSignPage from "@/modules/documentSignPage/DocumentSignPage";
 import Home from "@/modules/home/Home";
 import Loan from "@/modules/loan/Loan";
 import MainPage from "@/modules/mainPage/MainPage";
@@ -20,6 +21,7 @@ export default function RoutesProvider() {
                     <Route path="credit-card" element={<Loan />} />
                     <Route path="loan/:applicationId" element={<ScoringPage />} />
                     <Route path="loan/:applicationId/document" element={<Document />} />
+                    <Route path="loan/:applicationId/document/sign" element={<DocumentSignPage />} />
                     <Route path="*" element={<NotFoundPage />} />
                 </Route>
             </>

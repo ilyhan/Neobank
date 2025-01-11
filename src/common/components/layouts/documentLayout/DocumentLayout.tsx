@@ -1,12 +1,12 @@
-import PaymentSchedule from "@/common/components/paymentSchedule/PaymentSchedule";
 import Notification from "@/common/components/messages/notification/Notification";
 import { useQueryApplication } from "@/api/hookApi";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { EApplicationStatus } from "@/common/enums/application";
 import Loader from "@/common/components/loader/Loader";
+import DocumentSign from "@/common/components/documentSign/DocumentSign";
 
-const ScheduleLayout = () => {
+const DocumentLayout = () => {
     const navigate = useNavigate();
     const { applicationId: appId } = useParams();
 
@@ -28,14 +28,15 @@ const ScheduleLayout = () => {
     return (
         isLoading
             ? <Loader style={{ margin: '50px 50%', translate: '-50%' }}/>
-            : data.status == EApplicationStatus.CC_APPROVED && data
-                ? <PaymentSchedule schedule={data.credit.paymentSchedule}/>
+            : data.status == EApplicationStatus.PREPARE_DOCUMENTS && data
+                ? <DocumentSign />
                 : <Notification
-                    title="Documents are formed"
-                    description="Documents for signing will be sent to your email"
+                    title="Documents have been successfully signed and sent for approval"
+                    description="Within 10 minutes you will be sent a PIN code to your email for confirmation"
+                    wrapperStyle={{ maxWidth: "555px" }}
+                    descriptionStyle={{ maxWidth: "410px", marginInline: "auto" }}
                 />
-
     )
 };
 
-export default ScheduleLayout;
+export default DocumentLayout;

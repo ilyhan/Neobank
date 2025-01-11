@@ -30,7 +30,7 @@ const ScoringLayout = () => {
 
     return (
         isLoading
-            ? <Loader style={{ margin: '50px 50%' }} />
+            ? <Loader style={{ margin: '50px 50%', translate: '-50%' }}/>
             : data.status == EApplicationStatus.APPROVED && !isSent
                 ? <Scoring />
                 : <Notification
