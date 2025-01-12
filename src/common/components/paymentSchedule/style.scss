@@ -60,5 +60,29 @@
             gap: 0px;
             margin-bottom: 20px;
         }
+
+        &__actions {
+            align-items: end;
+        }
+
+        &__form {
+            flex-direction: column;
+            gap: 15px;
+            align-items: end;
+        }
+    }
+}
+
+@media (max-width: $mobile) {
+    .schedule {
+        &__actions {
+            flex-direction: column-reverse;
+            gap: 20px;
+            align-items: center;
+        }
+
+        &__form {
+            align-items: center;
+        }
     }
 }

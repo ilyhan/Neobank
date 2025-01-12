@@ -3,13 +3,26 @@ import "@/common/components/paymentSchedule/style.scss";
 import { IPayment } from "@/common/interfaces/application";
 import Button from "@/common/ui/button/Button";
 import Checkbox from "@/common/ui/checkbox/Checkbox";
+import Modal from "@/common/ui/modal/Modal";
 import Table from "@/common/ui/table/Table";
+import { useState } from "react";
+import DenyModal from "@/common/components/paymentSchedule/modal/DenyModal";
 
 interface IPaymentScheduleProps {
     schedule: IPayment[];
 };
 
 const PaymentSchedule = ({ schedule }: IPaymentScheduleProps) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleOpen = () => {
+        setIsOpen(true);
+    };
+
+    const handleClose = () => {
+        setIsOpen(false);
+    }
+
     return (
         <section className="schedule">
             <div className="schedule__header">
@@ -23,7 +36,7 @@ const PaymentSchedule = ({ schedule }: IPaymentScheduleProps) => {
             />
 
             <div className="schedule__actions">
-                <Button classes="schedule__button schedule__button_deny">
+                <Button classes="schedule__button schedule__button_deny" onClick={handleOpen}>
                     Deny
                 </Button>
 
@@ -39,6 +52,10 @@ const PaymentSchedule = ({ schedule }: IPaymentScheduleProps) => {
                     </Button>
                 </form>
             </div>
+
+            <Modal onClose={handleClose} isOpen={isOpen}>
+                <DenyModal />
+            </Modal>
         </section>
     )
 };
