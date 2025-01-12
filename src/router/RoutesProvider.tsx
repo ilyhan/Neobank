@@ -1,3 +1,4 @@
+import ConfirmationPage from "@/modules/confirmationPage/ConfirmationPage";
 import Document from "@/modules/document/Document";
 import DocumentSignPage from "@/modules/documentSignPage/DocumentSignPage";
 import Home from "@/modules/home/Home";
@@ -22,6 +23,7 @@ export default function RoutesProvider() {
                     <Route path="loan/:applicationId" element={<ScoringPage />} />
                     <Route path="loan/:applicationId/document" element={<Document />} />
                     <Route path="loan/:applicationId/document/sign" element={<DocumentSignPage />} />
+                    <Route path="loan/:applicationId/code" element={<ConfirmationPage />} />
                     <Route path="*" element={<NotFoundPage />} />
                 </Route>
             </>
