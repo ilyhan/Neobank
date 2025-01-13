@@ -2,8 +2,29 @@ import SvgHelper from "@/common/svg-helper/SvgHelper";
 import Button from "@/common/ui/button/Button";
 import Checkbox from "@/common/ui/checkbox/Checkbox";
 import "@/common/components/documentSign/style.scss";
+import { usePostDocuments } from "@/api/hookApi";
+import { FormEvent, useEffect } from "react";
+import Loader from "@/common/components/loader/Loader";
 
-const DocumentSign = () => {
+interface IDocumentSignProps {
+    appId: number;
+    onSuccess?: () => void;
+};
+
+const DocumentSign = ({ appId, onSuccess }: IDocumentSignProps) => {
+    const { mutate, isSuccess, isLoading } = usePostDocuments(appId);
+
+    useEffect(() => {
+        if (isSuccess) {
+            onSuccess?.();
+        }
+    }, [isSuccess]);
+
+    const handleSend = (e: FormEvent) => {
+        e.preventDefault();
+        mutate(null);
+    };
+
     return (
         <section className="document-sign">
             <div className="document-sign__header">
@@ -24,15 +45,18 @@ const DocumentSign = () => {
                 Information on your card
             </a>
 
-            <form className="document-sign__form">
+            <form className="document-sign__form" onSubmit={handleSend}>
                 <Checkbox
                     name="file-cb"
                     label="I agree"
                     isRequired={true}
                 />
 
-                <Button classes="document-sign__button" type="submit">
-                    Send
+                <Button classes="document-sign__button" type="submit" disabled={isLoading}>
+                    {isLoading
+                        ? <Loader style={{ width: "20px" }} />
+                        : "Send"
+                    }
                 </Button>
             </form>
         </section>

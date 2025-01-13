@@ -3,30 +3,21 @@ import "@/common/ui/verificationInput/style.scss";
 import { KeyboardEvent, useRef, useState } from "react";
 
 interface IVerificationInputProps {
-    code: string;
-    onSuccess: () => void;
+    length: number;
+    onSuccess: (code: string) => void;
+    isError?: boolean;
     errorMessage?: string;
 };
 
 const VerificationInput = ({
-    code, 
-    onSuccess, 
+    length,
+    onSuccess,
+    isError = false,
     errorMessage = 'Invalid confirmation code'
-}:IVerificationInputProps) => {
+}: IVerificationInputProps) => {
 
-    const [inputCode, setInputCode] = useState<string[]>(Array(code.length).fill(""));
-    const [error, setError] = useState<string | null>(null);
+    const [inputCode, setInputCode] = useState<string[]>(Array(length).fill(""));
     const inputs = useRef<Array<HTMLInputElement | null>>([]);
-
-    const validateCode = (value: string) => {
-        if (value != code) {
-            setError(errorMessage);
-        }
-        else {
-            setError(null);
-            onSuccess();
-        }
-    };
 
     const handleChange = (index: number, value: string) => {
         value = value.slice(0, 1);
@@ -39,9 +30,9 @@ const VerificationInput = ({
         newCode[index] = value
         setInputCode([...newCode]);
 
-        if (newCode.join("").length == code.length) {
-            validateCode(newCode.join(""));
-        } 
+        if (newCode.join("").length == length) {
+            onSuccess(newCode.join(""));
+        }
         else if (value.length) {
             inputs.current[index + 1]?.focus();
         }
@@ -77,7 +68,7 @@ const VerificationInput = ({
                         autoComplete="one-time-code"
                     />
                 ))}
-                {error && <p className="verification-input__error">{error}</p>}
+                {isError && <p className="verification-input__error">{errorMessage}</p>}
             </div>
         </div>
     )

@@ -24,7 +24,11 @@ import { validateScoring } from "@/common/helper/validateScoring";
 import { useEffect } from "react";
 import { useActions } from "@/store/actions";
 
-const Scoring = () => {
+interface IScoringProps {
+    onSuccess?: () => void;
+};
+
+const Scoring = ({ onSuccess }: IScoringProps) => {
     const {
         register,
         formState: { errors, dirtyFields, isSubmitted },
@@ -40,7 +44,6 @@ const Scoring = () => {
         isSuccess
     } = usePostScoring(Number(id));
 
-
     const submitForm = (data: IScoring) => {
         mutate(validateScoring(data));
         setSentScroring();
@@ -48,6 +51,7 @@ const Scoring = () => {
 
     useEffect(() => {
         if (isSuccess) {
+            onSuccess?.();
             reset();
         }
     }, [isSuccess]);

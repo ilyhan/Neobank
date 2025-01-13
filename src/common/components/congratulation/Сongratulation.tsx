@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const Сongratulation = () => {
     const navigate = useNavigate();
-    
+
     const handleClick = () => {
         navigate('/home');
     };

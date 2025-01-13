@@ -47,6 +47,15 @@ const applicationSlice = createSlice({
         setSentScroring(state) {
             state.isSentScoring = true;
             localStorage.setItem('application', JSON.stringify(state));
+        },
+
+        resetApplication(state) {
+            state.applicationId = null;
+            state.offers = null;
+            state.step = EApplicationStep.PRESCORING;
+            state.isSentScoring = false;
+
+            localStorage.removeItem('application');
         }
     }
 });

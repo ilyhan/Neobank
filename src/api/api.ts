@@ -1,3 +1,4 @@
+import { ICreditApplication } from "@/common/interfaces/application";
 import { IOffer, IPrescoring, IScoring } from "@/common/interfaces/form";
 import axios from "axios";
 
@@ -28,7 +29,35 @@ export const postScroring = async (data: IScoring, applicationId: number) => {
 };
 
 //получение данных о заявке 
-export const getApplication = async (applicationId: number | string) => {
-    const response = await axios.get(`${baseUrl}/admin/application/${applicationId}`);
+export const getApplication = async (applicationId: number | string): Promise<ICreditApplication> => {
+    const response = await axios.get<ICreditApplication>(`${baseUrl}/admin/application/${applicationId}`);
+    return response.data;
+};
+
+//согласование графика платежей
+export const postSchedule = async (applicationId: number) => {
+    const response = await axios.post(`${baseUrl}/document/${applicationId}`);
+    return response.data;
+};
+
+//отказ от заявки
+export const denyApplication = async (applicationId: number) => {
+    const response = await axios.post(`${baseUrl}/application/${applicationId}/deny`);
+    return response.data;
+};
+
+//согласование документов
+export const postDocuments = async (applicationId: number) => {
+    const response = await axios.post(`${baseUrl}/document/${applicationId}/sign`);
+    return response.data;
+};
+
+//подтверждение кода
+export const postCode = async (data: string, applicationId: number) => {
+    const response = await axios.post(`${baseUrl}/document/${applicationId}/sign/code`, data, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
     return response.data;
 };
