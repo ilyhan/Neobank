@@ -1,3 +1,4 @@
+import { EEmploymentStatus, EGender, EMaritalStatus, EPosition } from "@/common/enums/application";
 
 export interface IOption {
     title: string;
@@ -28,18 +29,18 @@ export interface IOffer {
 }
 
 export interface IScoring {
-    gender: "MALE" | "FEMALE";
-    maritalStatus: "MARRIED" | "DIVORCED" | "SINGLE" | "WIDOW_WIDOWER";
+    gender: EGender;
+    maritalStatus: EMaritalStatus;
     dependentAmount: number;
     passportIssueDate: string;
     passportIssueBranch: string;
     employment: {
-        employmentStatus: "UNEMPLOYED" | "SELF_EMPLOYED" | "EMPLOYED" | "BUSINESS_OWNER";
+        employmentStatus: EEmploymentStatus;
         employerINN: number;
         salary: number;
-        position: "WORKER" | "MID_MANAGER" | "TOP_MANAGER" | "OWNER";
+        position: EPosition;
         workExperienceTotal: number;
         workExperienceCurrent: number;
     }
     account: number;
-  }
+}

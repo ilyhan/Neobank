@@ -3,20 +3,23 @@ import Button from "@/common/ui/button/Button";
 import Checkbox from "@/common/ui/checkbox/Checkbox";
 import "@/common/components/documentSign/style.scss";
 import { usePostDocuments } from "@/api/hookApi";
-import { FormEvent, useEffect } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import Loader from "@/common/components/loader/Loader";
+import { useActions } from "@/store/actions";
+import { EApplicationStep } from "@/common/enums/application";
 
 interface IDocumentSignProps {
     appId: number;
-    onSuccess?: () => void;
 };
 
-const DocumentSign = ({ appId, onSuccess }: IDocumentSignProps) => {
+const DocumentSign = ({ appId }: IDocumentSignProps) => {
+    const [isChecked, setIsChecked] = useState(true);
     const { mutate, isSuccess, isLoading } = usePostDocuments(appId);
+    const { setNextStep } = useActions();
 
     useEffect(() => {
         if (isSuccess) {
-            onSuccess?.();
+            setNextStep(EApplicationStep.CODE);
         }
     }, [isSuccess]);
 
@@ -50,9 +53,10 @@ const DocumentSign = ({ appId, onSuccess }: IDocumentSignProps) => {
                     name="file-cb"
                     label="I agree"
                     isRequired={true}
+                    onChecked={setIsChecked}
                 />
 
-                <Button classes="document-sign__button" type="submit" disabled={isLoading}>
+                <Button classes="document-sign__button" type="submit" disabled={isLoading || isChecked}>
                     {isLoading
                         ? <Loader style={{ width: "20px" }} />
                         : "Send"

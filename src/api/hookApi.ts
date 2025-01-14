@@ -38,10 +38,11 @@ export const usePostScoring = (applicationId: number) => {
     })
 };
 
-export const useQueryApplication = (applicationId: number | string) => {
+export const useQueryApplication = (applicationId: number | string, firstFetch = true) => {
     return useQuery<ICreditApplication>({
         queryFn: () => getApplication(applicationId),
         staleTime: 0,
+        withFirstFetch: firstFetch,
     });
 };
 

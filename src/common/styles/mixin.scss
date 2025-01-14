@@ -58,7 +58,11 @@
         }
     }
 
-    &:active {
-        scale: 0.98;
+    &:not(:disabled):active {
+        scale: 0.98; 
+    }
+
+    &:disabled{
+        background-color: $color-hover-blue;
     }
 }

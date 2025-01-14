@@ -5,33 +5,56 @@ import DetailsList from "@/common/components/creditCard/DetailsList";
 import { ReactNode, RefObject } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
-import { EApplicationStep } from "@/common/enums/application";
+import { EApplicationStatus, EApplicationStep } from "@/common/enums/application";
+import { useNavigate } from "react-router-dom";
 
 interface ICreditCardProps {
     formRef?: RefObject<HTMLElement>;
 };
 
 const CreditCard = ({ formRef }: ICreditCardProps) => {
-    const step = useSelector((state: RootState) => state.applicationReducer.step);
+    const application = useSelector((state: RootState) => state.applicationReducer);
+    const navigate = useNavigate();
 
     const setTextButton = (): ReactNode => {
-        switch (step) {
-            case EApplicationStep.OFFERS:
+        switch (application.step) {
+            case EApplicationStep.PRESCORING:
+                return <span>{"Apply for card"}</span>;
+            case EApplicationStatus.PREAPPROVAL:
                 return <span>{"Choose an offer"}</span>;
-            case EApplicationStep.SCORING:
+            case EApplicationStatus.APPROVED:
                 return <span style={{ paddingInline: '16px' }}>
                     {"Continue"}<br /> {"registration"}
                 </span>;
             default:
-                return <span>{"Apply for card"}</span>;
+                return <span style={{ paddingInline: '16px' }}>
+                    {"Continue"}<br /> {"registration"}
+                </span>;
         }
     };
 
     const handleClick = () => {
-        if (formRef?.current) {
-            formRef.current.scrollIntoView({
-                behavior: "smooth",
-            });
+        switch (application.step) {
+            case EApplicationStatus.PREAPPROVAL:
+            case EApplicationStep.PRESCORING:
+                if (formRef?.current) {
+                    formRef.current.scrollIntoView({
+                        behavior: "smooth",
+                    });
+                }
+                break;
+            case EApplicationStatus.APPROVED:
+                navigate(`/loan/${application.applicationId}`);
+                break;
+            case EApplicationStatus.CC_APPROVED:
+                navigate(`/loan/${application.applicationId}/document`);
+                break;
+            case EApplicationStatus.DOCUMENT_CREATED:
+                navigate(`/loan/${application.applicationId}/document/sign`);
+                break;
+            case EApplicationStep.CODE:
+                navigate(`/loan/${application.applicationId}/code`);
+                break;
         }
     };
 

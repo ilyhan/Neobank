@@ -4,20 +4,24 @@ import { Ref, forwardRef } from "react";
 import Offers from "@/common/components/offers/Offers";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
-import { EApplicationStep } from "@/common/enums/application";
+import { EApplicationStatus, EApplicationStep } from "@/common/enums/application";
 import ContinueRegistration from "@/common/components/messages/continueRegistration/ContinueRegistration";
 
 const FormCard = forwardRef<HTMLElement, any>((_, ref: Ref<HTMLElement>) => {
     const step = useSelector((state: RootState) => state.applicationReducer.step);
-
+    
     return (
         <section ref={ref} className="form-wrapper">
-            {step == EApplicationStep.OFFERS
-                ? <Offers />
-                : step == EApplicationStep.SCORING
-                    ? <ContinueRegistration />
-                    : <Prescoring />
-            }
+            {(() => {
+                switch (step) {
+                    case EApplicationStatus.PREAPPROVAL:
+                        return <Offers />;
+                    case EApplicationStep.PRESCORING:
+                        return <Prescoring />;
+                    default:
+                        return <ContinueRegistration />;
+                }
+            })()}
         </section>
     )
 });

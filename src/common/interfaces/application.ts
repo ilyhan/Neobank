@@ -1,4 +1,4 @@
-import { EApplicationStatus } from "@/common/enums/application";
+import { EApplicationStatus, EEmploymentStatus, EGender, EMaritalStatus, EPosition } from "@/common/enums/application";
 
 export interface IPayment {
     number: number;
@@ -9,6 +9,23 @@ export interface IPayment {
     remainingDebt: number;
 };
 
+export interface IStatusHistory {
+    status: EApplicationStatus;
+    time: string;
+    changeType: "MANUAL" | "AUTOMATIC";
+};
+
+export interface ICredit {
+    amount: number;
+    term: number;
+    monthlyPayment: number;
+    rate: number;
+    psk: number;
+    isInsuranceEnabled: boolean;
+    isSalaryClient: boolean;
+    paymentSchedule: IPayment[];
+};
+
 export interface ICreditApplication {
     id: number;
     client: {
@@ -16,41 +33,28 @@ export interface ICreditApplication {
         lastName: string;
         middleName: string | null;
         email: string;
-        gender: "MALE" | "FEMALE";
+        gender: EGender;
         birthdate: string;
         passportSeries: string;
         passportNumber: string;
         passportIssueDate: string;
         passportIssueBranch: string;
-        maritalStatus: "MARRIED" | "SINGLE" | "DIVORCED" | "WIDOW_WIDOWER";
+        maritalStatus: EMaritalStatus;
         dependentAmount: number;
         employment: {
-            employmentStatus: "UNEMPLOYED" | "SELF_EMPLOYED" | "EMPLOYED" | "BUSINESS_OWNER";
+            employmentStatus: EEmploymentStatus;
             employerINN: number;
             salary: number;
-            position: "WORKER" | "MID_MANAGER" | "TOP_MANAGER" | "OWNER";
+            position: EPosition;
             workExperienceTotal: number;
             workExperienceCurrent: number;
         }
-        account: string;
+        account: number;
     };
-    credit: {
-        amount: number;
-        term: number;
-        monthlyPayment: number;
-        rate: number;
-        psk: number;
-        isInsuranceEnabled: boolean;
-        isSalaryClient: boolean;
-        paymentSchedule: IPayment[];
-    };
+    credit: ICredit;
     status: EApplicationStatus;
     creationDate: string;
     signDate: string | null;
     sesCode: string | null;
-    statusHistory: {
-        status: EApplicationStatus;
-        time: string;
-        changeType: "MANUAL" | "AUTOMATIC";
-    }[];
+    statusHistory: IStatusHistory[];
 }

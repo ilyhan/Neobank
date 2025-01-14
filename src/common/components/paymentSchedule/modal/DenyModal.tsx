@@ -3,8 +3,6 @@ import "@/common/components/paymentSchedule/modal/style.scss";
 import { useEffect, useState } from "react";
 import { useDenyApplication } from "@/api/hookApi";
 import Loader from "@/common/components/loader/Loader";
-import { useActions } from "@/store/actions";
-
 interface IDenyModalProps {
     appId: number;
     onClose: () => void;
@@ -14,13 +12,11 @@ interface IDenyModalProps {
 const DenyModal = ({ appId, onClose, onDelete }: IDenyModalProps) => {
     const [isDeny, setIsDeny] = useState(false);
     const { mutate, isLoading, isSuccess } = useDenyApplication(appId);
-    const { resetApplication } = useActions();
 
     useEffect(() => {
         if (isSuccess) {
             onDelete();
             setIsDeny(true);
-            resetApplication();
         }
     }, [isSuccess]);
 

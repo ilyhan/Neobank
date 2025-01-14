@@ -1,3 +1,4 @@
+import { EApplicationStatus } from "@/common/enums/application";
 import { ICreditApplication } from "@/common/interfaces/application";
 import { IOffer, IPrescoring, IScoring } from "@/common/interfaces/form";
 import axios from "axios";
@@ -31,6 +32,9 @@ export const postScroring = async (data: IScoring, applicationId: number) => {
 //получение данных о заявке 
 export const getApplication = async (applicationId: number | string): Promise<ICreditApplication> => {
     const response = await axios.get<ICreditApplication>(`${baseUrl}/admin/application/${applicationId}`);
+    if (response.data.status == EApplicationStatus.CC_DENIED) {
+        localStorage.removeItem('application');
+    }
     return response.data;
 };
 

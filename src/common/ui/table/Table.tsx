@@ -2,6 +2,7 @@ import "@/common/ui/table/style.scss";
 import { useState } from "react";
 import Button from "@/common/ui/button/Button";
 import SvgHelper from "@/common/svg-helper/SvgHelper";
+import { formattingDate } from "@/common/helper/formattingDate";
 
 interface ITableProps<T> {
     header: string[];
@@ -57,7 +58,7 @@ const Table = <T extends object>({ header, content }: ITableProps<T>) => {
                         <tr key={rowIndex}>
                             {Object.values(row).map((headerItem, colIndex) => (
                                 <td key={colIndex}>
-                                    {headerItem}
+                                    {formattingDate(headerItem)}
                                 </td>
                             ))}
                         </tr>

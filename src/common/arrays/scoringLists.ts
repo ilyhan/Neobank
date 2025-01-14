@@ -1,36 +1,37 @@
 import { IOption } from "@/common/interfaces/form";
+import { EEmploymentStatus, EGender, EMaritalStatus, EPosition } from "@/common/enums/application";
 
 export const gendreOptions: IOption[] = [
     {
         title: "Male",
-        value: "MALE",
+        value: EGender.MALE,
     },
 
     {
         title: "Female",
-        value: "FAMALE",
+        value: EGender.FEMALE,
     },
 ];
 
 export const maritalStatusOptions: IOption[] = [
     {
         title: "Married",
-        value: "MARRIED",
+        value: EMaritalStatus.MARRIED,
     },
 
     {
         title: "Divorced",
-        value: "DIVORCED",
+        value: EMaritalStatus.DIVORCED,
     },
 
     {
         title: "Single",
-        value: "SINGLE",
+        value: EMaritalStatus.SINGLE,
     },
 
     {
         title: "Window widower",
-        value: "WIDOW_WIDOWER",
+        value: EMaritalStatus.WIDOW_WIDOWER,
     },
 ];
 
@@ -69,43 +70,43 @@ export const dependentsOptions: IOption[] = [
 export const employmentStatusOptions: IOption[] = [
     {
         title: "Unemployed",
-        value: "UNEMPLOYED",
+        value: EEmploymentStatus.UNEMPLOYED,
     },
 
     {
         title: "Self employed",
-        value: "SELF_EMPLOYED",
+        value: EEmploymentStatus.SELF_EMPLOYED,
     },
 
     {
         title: "Employed",
-        value: "EMPLOYED",
+        value: EEmploymentStatus.EMPLOYED,
     },
 
     {
         title: "Business owner",
-        value: "BUSINESS_OWNER",
+        value: EEmploymentStatus.BUSINESS_OWNER,
     }
 ];
 
 export const positionOptions: IOption[] = [
     {
         title: "Worker",
-        value: "WORKER",
+        value: EPosition.WORKER,
     },
 
     {
         title: "Mid manager",
-        value: "MID_MANAGER",
+        value: EPosition.MID_MANAGER,
     },
 
     {
         title: "Top manager",
-        value: "TOP_MANAGER",
+        value: EPosition.TOP_MANAGER,
     },
 
     {
         title: "Owner",
-        value: "OWNER",
+        value: EPosition.OWNER,
     },
 ]

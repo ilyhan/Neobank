@@ -23,6 +23,7 @@ import { usePostScoring } from "@/api/hookApi";
 import { validateScoring } from "@/common/helper/validateScoring";
 import { useEffect } from "react";
 import { useActions } from "@/store/actions";
+import { EApplicationStatus } from "@/common/enums/application";
 
 interface IScoringProps {
     onSuccess?: () => void;
@@ -35,7 +36,7 @@ const Scoring = ({ onSuccess }: IScoringProps) => {
         handleSubmit,
         reset,
     } = useForm<IScoring>();
-    const { setSentScroring } = useActions();
+    const { setNextStep } = useActions();
     const id = useParams().applicationId;
     const {
         mutate,
@@ -46,11 +47,11 @@ const Scoring = ({ onSuccess }: IScoringProps) => {
 
     const submitForm = (data: IScoring) => {
         mutate(validateScoring(data));
-        setSentScroring();
     };
 
     useEffect(() => {
         if (isSuccess) {
+            setNextStep(EApplicationStatus.CC_APPROVED);
             onSuccess?.();
             reset();
         }

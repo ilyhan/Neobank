@@ -19,6 +19,7 @@ import {
 import { validatePrescoring } from "@/common/helper/validatePrescoring";
 import { validateEmpty } from "@/common/helper/validateEmpty";
 import { useActions } from "@/store/actions";
+import { sortOffers } from "@/common/helper/sortOffers";
 
 const Prescoring = () => {
     const {
@@ -44,8 +45,8 @@ const Prescoring = () => {
 
     useEffect(() => {
         if (isSuccess) {
-            if(data){
-                setApplicationData(data);
+            if (data) {
+                setApplicationData(sortOffers(data));
             }
             reset();
         }

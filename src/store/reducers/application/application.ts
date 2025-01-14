@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IApplicationInitial } from "@/store/reducers/application/interface";
 import { IOffer } from "@/common/interfaces/form";
-import { EApplicationStep } from "@/common/enums/application";
+import { EApplicationStatus, EApplicationStep } from "@/common/enums/application";
 
 const getApplicationData = (): IApplicationInitial => {
     const storedData = localStorage.getItem('application');
@@ -13,7 +13,6 @@ const getApplicationData = (): IApplicationInitial => {
                 applicationId: null,
                 offers: null,
                 step: EApplicationStep.PRESCORING,
-                isSentScoring: false,
             };
         }
     }
@@ -21,7 +20,6 @@ const getApplicationData = (): IApplicationInitial => {
         applicationId: null,
         offers: null,
         step: EApplicationStep.PRESCORING,
-        isSentScoring: false,
     };
 };
 
@@ -34,18 +32,18 @@ const applicationSlice = createSlice({
         setApplicationData(state, action: PayloadAction<IOffer[]>) {
             state.applicationId = action.payload[0].applicationId;
             state.offers = action.payload;
-            state.step = EApplicationStep.OFFERS;
+            state.step = EApplicationStatus.PREAPPROVAL;
 
             localStorage.setItem('application', JSON.stringify(state));
         },
 
         setStepScoring(state) {
-            state.step = EApplicationStep.SCORING;
+            state.step = EApplicationStatus.APPROVED;
             localStorage.setItem('application', JSON.stringify(state));
         },
 
-        setSentScroring(state) {
-            state.isSentScoring = true;
+        setNextStep(state, action: PayloadAction<EApplicationStep | EApplicationStatus>) {
+            state.step = action.payload;
             localStorage.setItem('application', JSON.stringify(state));
         },
 
@@ -53,7 +51,6 @@ const applicationSlice = createSlice({
             state.applicationId = null;
             state.offers = null;
             state.step = EApplicationStep.PRESCORING;
-            state.isSentScoring = false;
 
             localStorage.removeItem('application');
         }
