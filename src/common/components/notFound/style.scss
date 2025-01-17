@@ -1,0 +1,84 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.not-found {
+    @include flexBetween;
+    gap: 40px;
+
+    &__content{
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    &__title {
+        @include clampText($text-m-small-title, $text-small-title);
+        line-height: 34px;
+        color: $color-dim-black;
+    }
+
+    &__subtitle {
+        @include clampText($text-m-small-title, $text-small-title);
+        font-weight: 500;
+        line-height: 34px;
+    }
+
+    &__description {
+        @include clampText($text-m-main, $text-main);
+        font-weight: 500;
+        line-height: 18px;
+        color: $color-grey-back;
+    }
+
+    &__button {
+        @include clampText($text-m-main, $text-main);
+        font-weight: 700;
+        line-height: 18px;
+        letter-spacing: 0.02em;
+        border-radius: $border-radius-s;
+        color: $color-total-white;
+        background-color: $color-bright-blue;
+        padding: 11px 65px;
+        width: fit-content;
+
+        @media(hover: hover) {
+            &:hover {
+                background-color: $color-hover-blue;
+            }
+        }
+
+        &:active {
+            scale: 0.98;
+        }
+    }
+}
+
+@media (max-width: $tablet){
+    .not-found{
+        flex-direction: column-reverse;
+        gap: 20px;
+
+        &__content{
+            align-items: center;
+            gap: 24px;
+        }
+
+        &__description {
+            text-align: center;
+        }
+    }
+}
+
+@media (max-width: $mobile){
+    .not-found{
+        gap: 10px;
+
+        &__content{
+            gap: 15px;
+        }
+
+        &__button {
+            padding: 9px 35px;
+        }
+    }
+}

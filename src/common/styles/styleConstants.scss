@@ -6,11 +6,13 @@ $color-black: rgba(28, 28, 28, 1);
 $color-dim-black: rgba(28, 28, 30, 1);
 $color-deep-black: rgba(11, 19, 42, 1);
 $color-dark-label: rgba(26, 32, 44, 1);
+$color-black-modal: rgba(0, 0, 0, 0.5);
 //blue
 $color-bright-blue: rgba(0, 60, 255, 1);
 $color-soft-blue: rgba(104, 109, 241, 1);
 $color-hover-blue: rgba(119, 150, 192, 1);
 $color-input-focus: rgba(91, 53, 213, 1);
+$color-checkbox: rgba(49, 130, 206, 1);
 //white 
 $color-total-white: rgba(255, 255, 255, 1);
 $color-background: rgba(245, 244, 255, 1);
@@ -35,9 +37,12 @@ $color-charcoal: rgba(67, 67, 67, 0.9);
 $color-grey-divider: rgba(127, 146, 172, 1);
 $color-details: rgba(123, 116, 84, 1);
 $color-grey-condition: rgba(67, 67, 67, 1);
-//red
+$color-grey-back: rgba(75, 75, 75, 1);
+$color-grey-th: rgba(74, 85, 104, 1);
+//red 
 $color-red: rgba(255, 0, 0, 1);
 $color-red-error: rgba(255, 86, 49, 1);
+$color-red-deny: rgba(217, 55, 55, 0.8);
 //accent
 $color-loader: rgba(180, 56, 122, 1);
 $color-accent: rgba(235, 128, 29, 1);
@@ -66,6 +71,9 @@ $text-m-large: 20;
 $text-medium: 20;
 $text-m-medium: 16;
 
+$text-up-main: 18;
+$text-m-up-main: 16px;
+
 $text-main: 16;
 $text-m-main: 14;
 
@@ -79,8 +87,10 @@ $text-m-extra-small: 10;
 $border-radius-xl : 28px;
 $border-radius-l : 20px;
 $border-radius-m : 16px;
+$border-radius-sm : 10px;
 $border-radius-s : 8px;
 $border-radius-xs: 6px;
+$border-radius-xxs: 2px;
 $border-circle: 50%;
 
 //shadows

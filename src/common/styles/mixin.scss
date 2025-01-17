@@ -40,3 +40,29 @@
     border-radius: $border-radius-xl;
     box-shadow: $shadow-def;
 }
+
+@mixin styledButton {
+    @include clampText($text-m-main, $text-main);
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0.02em;
+    border-radius: $border-radius-s;
+    color: $color-total-white;
+    background-color: $color-bright-blue;
+    padding: 11px 65px;
+    width: fit-content;
+
+    @media(hover: hover) {
+        &:hover {
+            background-color: $color-hover-blue;
+        }
+    }
+
+    &:not(:disabled):active {
+        scale: 0.98; 
+    }
+
+    &:disabled{
+        background-color: $color-hover-blue;
+    }
+}

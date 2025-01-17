@@ -8,7 +8,7 @@ import "@/modules/home/style.scss";
 
 const Home = () => {
     return (
-        <main className="main">
+        <main className="main-home">
             <CardDesign />
             <Features />
             <CurrencyRates />

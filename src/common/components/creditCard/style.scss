@@ -57,7 +57,8 @@
     }
 
     &__button {
-        padding: 16px;
+        height: 50px;
+        padding-inline: 16px;
         border-radius: $border-radius-s;
         background-color: $color-bright-blue;
         color: $color-total-white;

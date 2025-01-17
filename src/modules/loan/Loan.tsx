@@ -10,7 +10,7 @@ const Loan = () => {
 
     return (
         <main className="main">
-            <CreditCard formRef={formSecion}/>
+            <CreditCard formRef={formSecion} />
             <CreditCardTabs />
             <Steps />
             <FormCard ref={formSecion} />

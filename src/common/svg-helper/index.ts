@@ -13,7 +13,8 @@ import money from '@/common/svg-helper/icons/money.svg?react';
 import arrow_up from '@/common/svg-helper/icons/arrow_up.svg?react';
 import success_input from '@/common/svg-helper/icons/successInput.svg?react';
 import error from '@/common/svg-helper/icons/error.svg?react';
-
+import file from '@/common/svg-helper/icons/file.svg?react';
+import arrow_drop_up from '@/common/svg-helper/icons/arrow_drop_up.svg?react';
 
 export type IconType = React.FunctionComponent<
     React.SVGProps<SVGSVGElement> & {
@@ -36,7 +37,9 @@ export type ImageComponentsTypes =
     | 'money'
     | 'arrow_up'
     | 'success_input'
-    | 'error';
+    | 'error'
+    | 'file'
+    | 'arrow_drop_up';
 
 export const ImageComponents: Record<ImageComponentsTypes, IconType> = {
     logo,
@@ -54,4 +57,6 @@ export const ImageComponents: Record<ImageComponentsTypes, IconType> = {
     arrow_up,
     success_input,
     error,
+    file,
+    arrow_drop_up,
 };

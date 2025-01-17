@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 interface IQueryOptions<T> {
     queryFn: () => Promise<T>;
     staleTime?: number;
+    withFirstFetch?: boolean;
 };
 
 export interface IUseQueryResult<T> {
@@ -14,7 +15,7 @@ export interface IUseQueryResult<T> {
     refetch: () => Promise<void>;
 };
 
-function useQuery<T>({ queryFn, staleTime = 0 }: IQueryOptions<T>): IUseQueryResult<T> {
+function useQuery<T>({ queryFn, staleTime = 0, withFirstFetch = true }: IQueryOptions<T>): IUseQueryResult<T> {
     const [data, setData] = useState<T | null>(null);
     const [error, setError] = useState<Error | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -36,16 +37,18 @@ function useQuery<T>({ queryFn, staleTime = 0 }: IQueryOptions<T>): IUseQueryRes
     };
 
     useEffect(() => {
-        if (isStale || staleTime == 0) {
-            fetchData();
-        } else {
-            const timer = setTimeout(() => {
-                setIsStale(true);
-            }, staleTime);
+        if (withFirstFetch) {
+            if (isStale || staleTime == 0) {
+                fetchData();
+            } else {
+                const timer = setTimeout(() => {
+                    setIsStale(true);
+                }, staleTime);
 
-            return () => clearTimeout(timer);
+                return () => clearTimeout(timer);
+            }
         }
-    }, [isStale, queryFn, staleTime]);
+    }, [isStale, staleTime]);
 
     const refetch = async () => {
         fetchData();

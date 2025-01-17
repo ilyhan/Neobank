@@ -2,7 +2,11 @@
 @use "@/common/styles/styleConstants" as *;
 
 .prescoring {
-
+    background-color: $color-total-white;
+    border-radius: $border-radius-xl;
+    box-shadow: $shadow-def;
+    padding: 32px;
+    
     &__header {
         display: grid;
         grid-template-columns: 1fr 1px 1fr;

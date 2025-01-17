@@ -11,13 +11,15 @@ import { usePostPrescoring } from "@/api/hookApi";
 import Loader from "@/common/components/loader/Loader";
 import PrescoringHeader from "@/common/components/form/prescoring/PrescoringHeader";
 import {
-    dateBirthPattern,
+    datePattern,
     emailPattern,
     passportNumberPattern,
     passportSeriesPattern,
 } from "@/common/helper/validationPatterns";
 import { validatePrescoring } from "@/common/helper/validatePrescoring";
 import { validateEmpty } from "@/common/helper/validateEmpty";
+import { useActions } from "@/store/actions";
+import { sortOffers } from "@/common/helper/sortOffers";
 
 const Prescoring = () => {
     const {
@@ -31,8 +33,11 @@ const Prescoring = () => {
         isLoading,
         isSuccess,
         mutate,
-        isError
+        isError,
+        data
     } = usePostPrescoring();
+
+    const { setApplicationData } = useActions()
 
     const submitForm = (data: IPrescoring) => {
         mutate(validatePrescoring(data));
@@ -40,6 +45,9 @@ const Prescoring = () => {
 
     useEffect(() => {
         if (isSuccess) {
+            if (data) {
+                setApplicationData(sortOffers(data));
+            }
             reset();
         }
     }, [isSuccess]);
@@ -119,7 +127,7 @@ const Prescoring = () => {
                         required: { value: true, message: "Enter your birth date" },
                         validate: value => validateAge(value as string, 18),
                         pattern: {
-                            value: dateBirthPattern,
+                            value: datePattern,
                             message: "Expected DD.MM.YYYY"
                         }
                     })}

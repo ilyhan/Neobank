@@ -1,0 +1,35 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.offers {
+    &__list {
+        @include flexBetween;
+        gap: 40px;
+    }
+}
+
+@media (max-width: $desktop) {
+    .offers {
+        &__list {
+            @include flexBetween;
+            gap: 20px;
+        }
+    }
+}
+
+@media (max-width: $tablet) {
+    .offers {
+        &__list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+}
+
+@media (max-width: $mobile) {
+    .offers {
+        &__list {
+            grid-template-columns: 1fr;
+        }
+    }
+}

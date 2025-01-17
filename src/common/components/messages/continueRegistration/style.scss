@@ -1,0 +1,27 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.continue {
+    border: 1px solid $color-input-focus;
+    border-radius: $border-radius-sm ;
+    padding: 24px 32px 34px;
+
+    &__title {
+        @include clampText($text-m-small-title, $text-small-title);
+        font-weight: 700;
+        line-height: 34px;
+        letter-spacing: 0.02em;
+        text-align: center;
+        color: $color-dim-black;
+        margin-bottom: 32px;
+    }
+
+    &__description {
+        @include clampText($text-m-main, $text-main);
+        font-weight: 500;
+        line-height: 18px;
+        letter-spacing: 0.02em;
+        text-align: center;
+        color: $color-dark-grey;
+    }
+}

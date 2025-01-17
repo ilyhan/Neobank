@@ -1,0 +1,22 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.confirmation {
+    margin-inline: auto;
+    margin-top: 84px;
+
+    &__title {
+        @include clampText($text-m-small-title, $text-small-title);
+        font-weight: 700;
+        line-height: 34px;
+        letter-spacing: 0.02em;
+        text-align: center;
+        margin-bottom: 32px;
+    }
+
+    &__loader-wrapper{
+        padding-top: 10px;
+        text-align: center;
+        height: 30px;
+    }
+}

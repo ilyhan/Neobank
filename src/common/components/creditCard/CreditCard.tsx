@@ -2,18 +2,59 @@ import Button from "@/common/ui/button/Button";
 import card from "/public/images/cardsDesign/cardDesign1.png";
 import "@/common/components/creditCard/style.scss";
 import DetailsList from "@/common/components/creditCard/DetailsList";
-import { RefObject } from "react";
+import { ReactNode, RefObject } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
+import { EApplicationStatus, EApplicationStep } from "@/common/enums/application";
+import { useNavigate } from "react-router-dom";
 
 interface ICreditCardProps {
     formRef?: RefObject<HTMLElement>;
 };
 
 const CreditCard = ({ formRef }: ICreditCardProps) => {
+    const application = useSelector((state: RootState) => state.applicationReducer);
+    const navigate = useNavigate();
+
+    const setTextButton = (): ReactNode => {
+        switch (application.step) {
+            case EApplicationStep.PRESCORING:
+                return <span>{"Apply for card"}</span>;
+            case EApplicationStatus.PREAPPROVAL:
+                return <span>{"Choose an offer"}</span>;
+            case EApplicationStatus.APPROVED:
+                return <span style={{ paddingInline: '16px' }}>
+                    {"Continue"}<br /> {"registration"}
+                </span>;
+            default:
+                return <span style={{ paddingInline: '16px' }}>
+                    {"Continue"}<br /> {"registration"}
+                </span>;
+        }
+    };
+
     const handleClick = () => {
-        if (formRef?.current) {
-            formRef.current.scrollIntoView({
-                behavior: "smooth",
-            });
+        switch (application.step) {
+            case EApplicationStatus.PREAPPROVAL:
+            case EApplicationStep.PRESCORING:
+                if (formRef?.current) {
+                    formRef.current.scrollIntoView({
+                        behavior: "smooth",
+                    });
+                }
+                break;
+            case EApplicationStatus.APPROVED:
+                navigate(`/loan/${application.applicationId}`);
+                break;
+            case EApplicationStatus.CC_APPROVED:
+                navigate(`/loan/${application.applicationId}/document`);
+                break;
+            case EApplicationStatus.DOCUMENT_CREATED:
+                navigate(`/loan/${application.applicationId}/document/sign`);
+                break;
+            case EApplicationStep.CODE:
+                navigate(`/loan/${application.applicationId}/code`);
+                break;
         }
     };
 
@@ -34,7 +75,7 @@ const CreditCard = ({ formRef }: ICreditCardProps) => {
                 <DetailsList />
 
                 <Button onClick={handleClick} classes="credit-card__button">
-                    Apply for card
+                    {setTextButton()}
                 </Button>
             </div>
 
