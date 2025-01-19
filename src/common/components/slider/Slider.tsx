@@ -14,7 +14,7 @@ const Slider = () => {
     const { data, isLoading, isError, isSuccess } = useNews();
 
     useEffect(() => {
-        if (data) {
+        if (data && isSuccess) {
             setCards(filterNews(data.articles));
         }
     }, [data, isSuccess]);

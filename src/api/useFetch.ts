@@ -17,7 +17,7 @@ export interface IUseQueryResult<T> {
 
 function useQuery<T>({ queryFn, staleTime = 0, withFirstFetch = true }: IQueryOptions<T>): IUseQueryResult<T> {
     const [data, setData] = useState<T | null>(null);
-    const [error, setError] = useState<Error | null>(null);
+    const [error, setError] = useState<Error | null | undefined>(undefined);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [isStale, setIsStale] = useState<boolean>(staleTime > 0);
 
@@ -59,7 +59,7 @@ function useQuery<T>({ queryFn, staleTime = 0, withFirstFetch = true }: IQueryOp
         error,
         isLoading,
         isSuccess: error == null,
-        isError: error != null,
+        isError: error !== undefined && error !== null,
         refetch
     };
 }

@@ -2,7 +2,7 @@ import { usePostCode } from "@/api/hookApi";
 import "@/common/components/confirmation/style.scss";
 import VerificationInput from "@/common/ui/verificationInput/VerificationInput";
 import { useEffect } from "react";
-import Loader from "../loader/Loader";
+import Loader from "@/common/components/loader/Loader";
 import { useActions } from "@/store/actions";
 
 interface IConfirmationProps {

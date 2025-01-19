@@ -38,7 +38,7 @@ const CurrencyRates = () => {
 
             <div className="currency-rates__info-warpper">
                 {isLoading
-                    ? <Loader />
+                    ? <Loader/>
                     : <CurrencyList items={currencyList} />
                 }
 
