@@ -35,6 +35,7 @@ const Modal = ({ isOpen, children, onClose, withCloseIcon = true }: IModalProps)
         <div
             className={`modal__overlay ${isVisible ? "modal__overlay_open" : ""}`}
             onClick={closeModal}
+            data-testid='overlay'
         >
             <div
                 className={`modal__content ${isVisible ? "modal__content_open" : ""}`}

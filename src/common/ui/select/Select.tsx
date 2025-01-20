@@ -39,7 +39,7 @@ const Select = forwardRef<HTMLSelectElement, ISelectProps>(
                         className={`input ${props.className ? props.className : ""} ${error ? " input_error" : ""}`}
                         defaultValue={withEmptyPlacholder ? "" : undefined} 
                     >
-                        {withEmptyPlacholder && <option value="" hidden disabled></option>}
+                        {withEmptyPlacholder && <option value="" hidden disabled data-testid='option'></option>}
                         {options?.map((item) => (
                             <option key={item.value} value={item.value}>{item.title}</option>
                         ))}

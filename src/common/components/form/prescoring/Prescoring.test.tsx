@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, act } from '@testing-library/react';
 import Precoring from '@/common/components/form/prescoring/Prescoring';
 import { usePostPrescoring } from '@/api/hookApi';
 
@@ -29,7 +29,9 @@ describe("Prescoring", () => {
         render(<Precoring />);
 
         const button = screen.getByRole('button');
-        fireEvent.click(button);
+        await act(async () => {
+            fireEvent.click(button);
+        });
 
         expect(await screen.findByText(/Enter amount/i)).toBeInTheDocument();
         expect(await screen.findByText(/Enter your last name/i)).toBeInTheDocument();
@@ -44,20 +46,30 @@ describe("Prescoring", () => {
         render(<Precoring />);
 
         const button = screen.getByRole('button');
-        fireEvent.click(button);
+        await act(async () => {
+            fireEvent.click(button);
+        });
 
         const inputDate = screen.getByPlaceholderText(/Select Date and Time/i);
         
-        fireEvent.change(inputDate, { target: { value: '2000-01-01' } });
+        await act(async () => {
+            fireEvent.change(inputDate, { target: { value: '2000-01-01' } });
+        });
         expect(await screen.findByText(/Expected DD.MM.YYYY/i)).toBeInTheDocument();
 
-        fireEvent.change(inputDate, { target: { value: 'date and time' } });
+        await act(async () => {
+            fireEvent.change(inputDate, { target: { value: 'date and time' } });
+        });
         expect(await screen.findByText(/Expected DD.MM.YYYY/i)).toBeInTheDocument();
         
-        fireEvent.change(inputDate, { target: { value: '40.10.2000' } });
+        await act(async () => {
+            fireEvent.change(inputDate, { target: { value: '40.10.2000' } });
+        });
         expect(await screen.findByText(/Incorrect date/i)).toBeInTheDocument();
 
-        fireEvent.change(inputDate, { target: { value: '19.01.2025' } });
+        await act(async () => {
+            fireEvent.change(inputDate, { target: { value: '19.01.2025' } });
+        });
         expect(await screen.findByText(/Incorrect age/i)).toBeInTheDocument();
     });
 
@@ -65,11 +77,15 @@ describe("Prescoring", () => {
         render(<Precoring />);
 
         const button = screen.getByRole('button');
-        fireEvent.click(button);
+        await act(async () => {
+            fireEvent.click(button);
+        });
 
         const inputName = screen.getByPlaceholderText(/For Example Jhon/i);
         
-        fireEvent.change(inputName, { target: { value: "  " } });
+        await act(async () => {
+            fireEvent.change(inputName, { target: { value: "  " } });
+        });
         expect(await screen.findByText(/Incorrect data/i)).toBeInTheDocument();
     });
 
@@ -77,18 +93,24 @@ describe("Prescoring", () => {
         render(<Precoring />);
 
         const button = screen.getByRole('button');
-        fireEvent.click(button);
+        await act(async () => {
+            fireEvent.click(button);
+        });
 
         const inputAmount = screen.getByPlaceholderText(/Select amount/i);
         
-        fireEvent.change(inputAmount, { target: { value: 10 } });
+        await act(async () => {
+            fireEvent.change(inputAmount, { target: { value: 10 } });
+        });
         expect(await screen.findByText(/Incorrect amount/i)).toBeInTheDocument();
 
-        fireEvent.change(inputAmount, { target: { value: 60000000 } });
+        await act(async () => {
+            fireEvent.change(inputAmount, { target: { value: 60000000 } });
+        });
         expect(await screen.findByText(/Incorrect amount/i)).toBeInTheDocument();
     });
 
-    test('Show error', () => {
+    test('Show error', async () => {
         (usePostPrescoring as jest.Mock).mockReturnValue({
             mutate: mockMutate,
             isError: true,
@@ -99,7 +121,9 @@ describe("Prescoring", () => {
         render(<Precoring />);
 
         const button = screen.getByRole('button');
-        fireEvent.click(button);
+        await act(async () => {
+            fireEvent.click(button);
+        });
 
         expect(screen.getByText(/Sorry, an error has occurred/i)).toBeInTheDocument();
     });

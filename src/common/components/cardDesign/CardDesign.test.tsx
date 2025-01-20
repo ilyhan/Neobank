@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import CardDesign from '@/common/components/cardDesign/CardDesign';
 import { cardsDesignList } from '@/common/arrays/cardsDesignList';
 
-describe('CardDesign Component', () => {
+describe('CardDesign', () => {
   test('redner title', () => {
     render(<CardDesign />);
     const title = screen.getByText(/Choose the design you like and apply for card right now/i);
