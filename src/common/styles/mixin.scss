@@ -1,0 +1,68 @@
+@use "@/common/styles/styleConstants" as *;
+
+@mixin defaultWrapper {
+    max-width: 1324px;
+    width: 100%;
+    margin: 0 auto;
+    padding-inline: 12px;
+}
+
+@mixin clampText($min, $max) {
+    font-size: clamp(#{$min}px,
+        #{calc($max / 1024) * 100}vw,
+        #{$max}px);
+}
+
+@mixin flexCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flexBetween {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin textEllipsis($num: 3) {
+    display: -webkit-box;
+    -webkit-line-clamp: $num;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@mixin cardStyle {
+    height: 236px;
+    width: 100%;
+    padding: 32px;
+    border-radius: $border-radius-xl;
+    box-shadow: $shadow-def;
+}
+
+@mixin styledButton {
+    @include clampText($text-m-main, $text-main);
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0.02em;
+    border-radius: $border-radius-s;
+    color: $color-total-white;
+    background-color: $color-bright-blue;
+    padding: 11px 65px;
+    width: fit-content;
+
+    @media(hover: hover) {
+        &:hover {
+            background-color: $color-hover-blue;
+        }
+    }
+
+    &:not(:disabled):active {
+        scale: 0.98; 
+    }
+
+    &:disabled{
+        background-color: $color-hover-blue;
+    }
+}

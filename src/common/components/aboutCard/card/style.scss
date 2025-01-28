@@ -1,0 +1,44 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.card-about {
+    @include cardStyle;
+
+    &__icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    &__title {
+        @include clampText($text-m-small-title, $text-small-title);
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        margin-block: 24px 16px;
+    }
+
+    &__description {
+        @include clampText($text-m-main, $text-main);
+        font-weight: 500;
+        line-height: 16px;
+        letter-spacing: 0.02em;
+    }
+
+    &_white {
+        background-color: $color-beige;
+    }
+
+    &_grey {
+        background-color: $color-grey-blue;
+    }
+}
+
+@media (max-width: $mobile) {
+    .card-about {
+        height: fit-content;
+
+
+        &__title {
+            margin-block: 14px 12px;
+        }
+    }
+}

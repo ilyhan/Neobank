@@ -1,0 +1,59 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.offer-card {
+    padding: 32px;
+    background-color: $color-total-white;
+    border-radius: $border-radius-xl;
+    box-shadow: $shadow-def;
+    text-align: center;
+
+    &__image {
+        margin: 0 auto 32px;
+    }
+
+    &__paragraph {
+        @include clampText($text-m-main, $text-main);
+        font-weight: 500;
+        line-height: 18px;
+        letter-spacing: 0.02em;
+        color: $color-dim-black;
+        margin-bottom: 14px;
+
+        &_flex {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+    }
+
+    &__button {
+        @include styledButton;
+
+        & {
+            padding: 16px 49px;
+            margin: 90px auto 0px;
+        }
+    }
+}
+
+@media (max-width: $tablet) {
+    .offer-card {
+        padding: 28px;
+
+        &__button {
+            padding: 14px 39px;
+            margin: 80px auto 0px;
+        }
+    }
+}
+
+@media (max-width: $mobile) {
+    .offer-card {
+        &__button {
+            padding: 11px 30px;
+            margin: 70px auto 0px;
+        }
+    }
+}

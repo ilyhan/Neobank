@@ -1,0 +1,40 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.modal {
+    &__overlay {
+        @include flexCenter;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100%;
+        background-color: $color-black-modal;
+        z-index: 1000;
+        opacity: 0;
+        transition: $transition-fast;
+
+        &_open {
+            opacity: 1;
+        }
+    }
+
+    &__content {
+        position: relative;
+        max-width: 95%;
+        padding: 16px;
+        background-color: $color-total-white;
+        scale: 0.2;
+        transition: $transition-fast;
+
+        &_open {
+            scale: 1;
+        }
+    }
+
+    &__close-btn {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+    }
+}

@@ -1,0 +1,33 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.about-card {
+    margin-top: 50px;
+
+    &__list {
+        display: flex;
+        gap: 40px;
+        flex-wrap: wrap;
+        justify-content: center;
+        list-style: none;
+    }
+
+    &__item {
+        min-width: 405px;
+        flex: 1;
+    }
+}
+
+@media (max-width: $mobile){
+    .about-card{
+        margin-top: 30px;
+        
+        &__list{
+            gap: 20px;
+        }
+        
+        &__item{
+            min-width: 90vw;
+        }
+    }
+}

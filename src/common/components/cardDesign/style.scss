@@ -1,0 +1,72 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.card-design {
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+
+    &__header {
+        max-width: 610px;
+    }
+
+    &__title {
+        @include clampText($text-m-title, $text-title);
+        color: $color-dim-black;
+        margin-bottom: 36px;
+        line-height: 50px;
+    }
+
+    &__button {
+        padding: 16px;
+        border-radius: $border-radius-m;
+        background-color: $color-bright-blue;
+        color: $color-total-white;
+        box-shadow: $shadow-def;
+        font-weight: 700;
+        line-height: 18px;
+        @include clampText($text-m-main, $text-main);
+
+        @media(hover: hover) {
+            &:hover {
+                background-color: $color-hover-blue;
+            }
+        }
+
+        &:active {
+            scale: 0.98;
+        }
+    }
+
+    &__list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        max-width: 516px;
+        width: 100%;
+    }
+}
+
+@media (max-width: $tablet) {
+    .card-design {
+        flex-direction: column;
+        align-items: center;
+
+        &__button {
+            margin-inline: auto;
+        }
+
+        &__title {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+    }
+}
+
+@media (max-width: $mobile) {
+    .card-design {
+        &__list {
+            gap: 10px;
+        }
+    }
+}

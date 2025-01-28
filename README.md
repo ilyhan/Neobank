@@ -1,50 +1,50 @@
-# React + TypeScript + Vite
+# NeoBank
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Добро пожаловать в NeoBank — веб-приложение для удобного оформления кредитов, разработанное на React с использованием TypeScript. Приложение позволяет пользователям:
 
-Currently, two official plugins are available:
+- Просматривать информацию о банке и его продуктах
+- Следить за новостями и курсами валют
+- Оформлять кредиты
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Логика оформления кредита
 
-## Expanding the ESLint configuration
+1. Пользователь заполняет форму (prescoring) на странице loan и после отправки данных создаётся уникальный id заявки.
+2. Начинается обработка prescoring заявки и есть она проходит, то пользователю становятся доступны 4 предложения на выбор (loanOffer) с разными условиями (например без страховки, со страховкой, с зарплатным клиентом, со страховкой и зарплатным клиентом).
+3. Пользователь выбирает одно из предложений и отправляется запрос, после чего его заявка сохраняется.
+4. После создание пользователю показывается сообщение о том, что необходимо дождаться ответа по заявке на почту.
+5. На почту клиенту приходит письмо с текстом "Ваша заявка предварительно одобрена, завершите оформление".
+6. В письме клиент переходит на страницу loan/id и заполняет вторую форму, где указывает свои паспортные данные и работу. После отправки формы, показывается сообщение, что ответ по заявке придёт на почту. Также сразу после отправки запускается таймер на 10 секунд и если приходит статус CC_DENIED, то происходит редирект на главную страницу и оформление завершается.
+7. Происходит scoring данных, бэкенд рассчитывает все данные по кредиту (ПСК, график платежей и тд). После валидации данных пользователю приходит письмо на почту с одобрением или отказом. Если кредит одобрен, то в письме присутствует ссылка на запрос "Сформировать документы", loan/id/document.
+8. Перейдя по ссылке пользователь отрисовывается график платежей от первого до последнего месяца, если пользователь согласен, он нажимает на checkbox и отправляет документы на формирование, после на этой странице показывается текст, что необходимо перейти в почту.
+9. Пользователю на почту приходят документы для подписания и ссылку на запрос на согласие с условиями. При переходе по ссылке loan/id/document/sign пользователь нажимает на checkbox и отправляет документы на подписание. Пользователь может отказаться от условий или согласиться. После отправки опять показывается надпись с предложением перейти в почту.
+10. Если пользователь согласился, то на почту отправляется код подтверждения, при переходе на loan/id/code пользователь вводит code. Если введённый код неверный, то показывается сообщение с ошибкой. Если полученный код совпадает с отправленными, то выводится экран с поздравлением и оформление кредита заканчивается.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Запуск проекта
 
-- Configure the top-level `parserOptions` property like this:
+Для запуска проекта выполните:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+1. Клонируйте репозиторий:
+   ```bash 
+   git clone https://github.com/ilyhan/Neobank.git
+   ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. Перейдите в папку проекта:
+   ```bash 
+   cd Neobank
+   ```
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+3. Запустите приложение:
+   ```bash 
+   npm run dev 
+   ```
+После выполнения этих команд приложение будет доступно по адресу http://localhost:5173, и вы сможете работать с ним в браузере.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+▎ Контакты
+
+Если у вас остались вопросы, обращайтесь: 
+
+- По почте: ilya.nesterov2003@yandex.ru
+- В Телеграм: [@DJNest](https://t.me/DJN)
+
+
+## Спасибо за интерес к моему проекту!

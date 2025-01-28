@@ -1,0 +1,32 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.faq {
+
+    &__title {
+        @include clampText($text-m-small-title, $text-small-title);
+        font-weight: 700;
+        margin-bottom: 32px;
+    }
+
+    &__wrapper{
+        margin-top: 32px;
+    }
+
+    &__item {
+        border: 1px solid $color-border;
+        border-top: none;
+
+        &:first-child {
+            border-top: 1px solid $color-border;
+        }
+    }
+}
+
+@media (max-width: $mobile) {
+    .faq{
+        &__wrapper{
+            margin-top: 20px;
+        }
+    }
+}

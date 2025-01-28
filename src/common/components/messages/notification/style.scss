@@ -1,0 +1,25 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.notification {
+    padding-block: 120px;
+    text-align: center;
+    margin-inline: auto;
+    
+    &__title {
+        @include clampText($text-m-small-title, $text-small-title);
+        font-weight: 700;
+        line-height: 34px;
+        letter-spacing: 0.02em;
+        color: $color-dim-black;
+        margin-bottom: 32px;
+    }
+
+    &__description {
+        @include clampText($text-m-main, $text-main);
+        font-weight: 500;
+        line-height: 18px;
+        letter-spacing: 0.02em;
+        color: $color-dark-grey;
+    }
+}

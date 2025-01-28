@@ -1,0 +1,123 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.feedback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 64px;
+
+    &__support {
+        @include clampText($text-m-large, $text-large);
+        color: $color-accent;
+        font-weight: 700;
+        margin-bottom: 30px;
+    }
+
+    &__title {
+        @include clampText($text-m-small-title, $text-small-title);
+        color: $color-dim-black;
+        font-weight: 700;
+        line-height: 50px;
+        max-width: 430px;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 62px;
+    }
+
+    &__subtitle{
+        @include clampText($text-m-medium, $text-medium);
+        font-weight: 500;
+        text-align: center;
+    }
+
+    &__form {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 22px 32px;
+        background-color: $color-total-white;
+        box-shadow: $shadow-input;
+        border-radius: $border-radius-l;
+
+        &_error{
+            outline: 2px solid $color-red-error;
+        }
+    }
+
+    &__button {
+        display: flex;
+        gap: 10px;
+        padding: 10px 30px 10px 14px;
+        border-radius: $border-radius-l;
+        background-color: $color-soft-blue;
+        color: $color-total-white;
+
+        @media (hover: hover) {
+            &:hover {
+                background-color: $color-hover-blue;
+            }
+        }
+
+        &:active {
+            scale: 0.98;
+        }
+    }
+
+    &__button-text {
+        @include clampText($text-m-main, $text-main);
+        font-weight: 700;
+    }
+
+    &__input {
+        font-family: "Nunito Sans", sans-serif;
+        @include clampText($text-m-medium, $text-medium);
+        font-weight: 400;
+        width: 100%;
+        flex: 1;
+        outline: none;
+        border: none;
+        transition: $transition-fast;
+
+        &::placeholder {
+            color: $color-grey-input;
+        }
+    }
+}
+
+@media (max-width: $tablet) {
+    .feedback {
+        &__title {
+            margin-bottom: 45px;
+        }
+
+        &__form {
+            padding: 18px 25px;
+        }
+
+        &__button {
+            padding-left: 20px;
+        }
+    }
+}
+
+@media (max-width: $mobile) {
+    .feedback {
+        &__support {
+            margin-bottom: 15px;
+        }
+
+        &__title {
+            margin-bottom: 30px;
+        }
+
+        &__button {
+            border-radius: $border-circle;
+            padding: 9px 7px 8px 5px;
+        }
+
+        &__button-text {
+            display: none;
+        }
+    }
+}

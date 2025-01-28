@@ -1,0 +1,57 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.verification-input {
+    text-align: center;
+    @include clampText($text-m-medium, $text-medium);
+    font-weight: 500;
+    line-height: 23px;
+    letter-spacing: 0.02em;
+
+    border: none;
+    outline: none;
+    width: 48px;
+    height: 48px;
+    border-radius: $border-radius-s;
+    background-color: transparent;
+    border: 0.5px solid $color-medium-grey;
+
+    &:focus {
+        border-color: $color-checkbox;
+    }
+
+    &_has-data {
+        border-color: $color-checkbox;
+    }
+
+    &::placeholder {
+        position: relative;
+        left: 50%;
+        translate: -50%;
+        width: 20px;
+        height: 20px;
+        border-radius: $border-circle;
+        border: 1.5px solid $color-medium-grey;
+    }
+
+    &__wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+    }
+
+    &__container {
+        position: relative;
+        padding-bottom: 25px;
+    }
+
+    &__error {
+        @include clampText($text-m-main, $text-main);
+        position: absolute;
+        font-weight: 500;
+        line-height: 16px;
+        color: $color-red-error;
+        bottom: 0;
+    }
+}

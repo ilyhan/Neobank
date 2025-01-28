@@ -1,0 +1,83 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.document-sign {
+    margin-top: 84px;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 80px;
+    }
+
+    &__title {
+        @include clampText($text-m-small-title, $text-small-title);
+        font-weight: 700;
+        color: $color-dim-black;
+    }
+
+    &__step {
+        @include clampText($text-m-main, $text-main);
+        font-weight: 500;
+        line-height: 16px;
+    }
+
+    &__description {
+        @include clampText($text-m-medium, $text-medium);
+        font-weight: 500;
+        line-height: 22px;
+        margin-block: 32px;
+        color: $color-dark-grey;
+    }
+
+    &__file-link {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        width: fit-content;
+    }
+
+    &__form {
+        display: flex;
+        align-items: center;
+        gap: 80px;
+        justify-content: end;
+        margin-top: 16px;
+    }
+
+
+    &__button {
+        @include styledButton;
+
+        & {
+            padding: 11px 60px;
+        }
+    }
+}
+
+@media (max-width: $tablet) {
+    .document-sign {
+        margin-top: 60px;
+
+        &__header {
+            display: flex;
+            flex-direction: column;
+            gap: 0px;
+            margin-bottom: 20px;
+        }
+    }
+}
+
+@media (max-width: $mobile) {
+    .document-sign {
+        margin-top: 30px;
+
+        &__form {
+            gap: 40px;
+        }
+
+        &__button {
+            padding: 10px 40px;
+        }
+    }
+}

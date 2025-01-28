@@ -1,0 +1,98 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.currency-rates {
+    width: 100%;
+    padding: 32px;
+    background: $gradient-def;
+    border-radius: 28px;
+    box-shadow: $shadow-def;
+    margin-top: 48px;
+
+    &__header {
+        @include flexBetween;
+        margin-bottom: 40px;
+    }
+
+    &__title {
+        @include clampText($text-m-small-title, $text-small-title);
+        color: $color-dim-black;
+    }
+
+    &__update {
+        @include clampText($text-m-main, $text-main);
+        font-weight: 500;
+    }
+
+    &__subtitle {
+        @include clampText($text-m-medium, $text-medium);
+    }
+
+    &__info-warpper {
+        @include flexBetween;
+        margin-top: 30px;
+        margin-bottom: 35px;
+    }
+
+    &__list {
+        @include flexBetween;
+        flex-wrap: wrap;
+        max-width: 450px;
+        row-gap: 32px;
+        column-gap: 15px;
+    }
+
+    &__item {
+        @include clampText($text-m-medium, $text-medium);
+        font-weight: 700;
+        width: 130px;
+    }
+
+    &__currency {
+        color: $color-medium-grey;
+    }
+
+    &__course {
+        padding-left: 15px;
+    }
+
+    &__link {
+        @include clampText($text-m-medium, $text-medium);
+        font-weight: 700;
+        color: $color-total-white;
+
+        &:hover {
+            @media(hover: hover) {
+                color: $color-medium-grey;
+            }
+        }
+
+        &:active {
+            opacity: .7;
+        }
+    }
+}
+
+@media (max-width: $tablet) {
+    .currency-rates {
+        text-align: center;
+
+        &__header {
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        &__image {
+            display: none;
+        }
+
+        &__info-warpper {
+            justify-content: center;
+        }
+
+        &__list {
+            justify-content: center;
+        }
+    }
+}

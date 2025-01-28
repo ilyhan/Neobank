@@ -1,0 +1,40 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.card-cashback {
+    @include cardStyle;
+    height: 163px;
+    
+    &__title {
+        @include clampText($text-m-main, $text-main);
+        font-weight: 500;
+        line-height: 16px;
+        letter-spacing: 0.02em;
+        color: $color-charcoal;
+    }
+
+    &__description {
+        @include clampText($text-m-subtitle, $text-subtitle);
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        margin-top: 22px;
+    }
+
+    &_white {
+        background-color: $color-beige;
+    }
+
+    &_grey {
+        background-color: $color-muted-teal;
+    }
+}
+
+@media (max-width: $mobile) {
+    .card-cashback {
+        height: fit-content;
+
+        &__description {
+            margin-top: 18px;
+        }
+    }
+}

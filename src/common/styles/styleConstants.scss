@@ -1,0 +1,108 @@
+//colors 
+//black 
+$color-total-black: rgba(0, 0, 0, 1);
+$color-dark-black: rgba(29, 25, 41, 1);
+$color-black: rgba(28, 28, 28, 1);
+$color-dim-black: rgba(28, 28, 30, 1);
+$color-deep-black: rgba(11, 19, 42, 1);
+$color-dark-label: rgba(26, 32, 44, 1);
+$color-black-modal: rgba(0, 0, 0, 0.5);
+//blue
+$color-bright-blue: rgba(0, 60, 255, 1);
+$color-soft-blue: rgba(104, 109, 241, 1);
+$color-hover-blue: rgba(119, 150, 192, 1);
+$color-input-focus: rgba(91, 53, 213, 1);
+$color-checkbox: rgba(49, 130, 206, 1);
+//white 
+$color-total-white: rgba(255, 255, 255, 1);
+$color-background: rgba(245, 244, 255, 1);
+$color-soft-white: rgba(244, 244, 244, 1);
+$color-beige: rgba(234, 236, 238, 1);
+$color-border: rgba(226, 232, 240, 1);
+$color-input: rgba(249, 245, 227, 1);
+//grey 
+$color-light-grey: rgba(178, 178, 178, 0.2);
+$color-footer: rgba(231, 231, 231, 1);
+$color-dark-grey: rgba(79, 86, 101, 1);
+$color-medium-grey: rgba(128, 128, 128, 1);
+$color-medium-gre-tr: rgba(128, 128, 128, 0.2);
+$color-misty-grey: rgba(45, 55, 72, 1);
+$color-grey-input: rgba(144, 146, 176, 1);
+$color-grey-border: rgba(187, 187, 187, 0.2);
+$color-deep-grey: rgba(61, 61, 61, 1);
+$color-grey: rgba(217, 217, 217, 1);
+$color-grey-blue: rgba(127, 146, 172, 0.7);
+$color-muted-teal: rgba(136, 179, 184, 0.6);
+$color-charcoal: rgba(67, 67, 67, 0.9);
+$color-grey-divider: rgba(127, 146, 172, 1);
+$color-details: rgba(123, 116, 84, 1);
+$color-grey-condition: rgba(67, 67, 67, 1);
+$color-grey-back: rgba(75, 75, 75, 1);
+$color-grey-th: rgba(74, 85, 104, 1);
+//red 
+$color-red: rgba(255, 0, 0, 1);
+$color-red-error: rgba(255, 86, 49, 1);
+$color-red-deny: rgba(217, 55, 55, 0.8);
+//accent
+$color-loader: rgba(180, 56, 122, 1);
+$color-accent: rgba(235, 128, 29, 1);
+$color-hover-link: rgba(178, 163, 95, 1);
+
+//background
+$gradient-def: linear-gradient(358.2deg, rgba(178, 178, 178, 0.8) 8.06%, rgba(178, 178, 178, 0) 67.93%),
+    linear-gradient(0deg, rgba(244, 244, 244, 0.9), rgba(244, 244, 244, 0.9));
+
+$light-soft-gradient: linear-gradient(180.8deg, rgba(203, 213, 224, 0.624) 34.33%, rgba(254, 235, 200, 0.56) 64.27%);
+
+
+//font-sizes in px
+$text-title: 48;
+$text-m-title: 34;
+
+$text-subtitle: 35;
+$text-m-subtitle: 28;
+
+$text-small-title: 30;
+$text-m-small-title: 24;
+
+$text-large: 24;
+$text-m-large: 20;
+
+$text-medium: 20;
+$text-m-medium: 16;
+
+$text-up-main: 18;
+$text-m-up-main: 16px;
+
+$text-main: 16;
+$text-m-main: 14;
+
+$text-small: 14;
+$text-m-small: 12;
+
+$text-extra-small: 12;
+$text-m-extra-small: 10;
+
+//borders
+$border-radius-xl : 28px;
+$border-radius-l : 20px;
+$border-radius-m : 16px;
+$border-radius-sm : 10px;
+$border-radius-s : 8px;
+$border-radius-xs: 6px;
+$border-radius-xxs: 2px;
+$border-circle: 50%;
+
+//shadows
+$shadow-def: 0px 2px 4px 0px rgba(187, 187, 187, 0.2), 0px 0px 4px 0px rgba(0, 0, 0, 0.08);
+$shadow-input: 0px 10px 20px 0px rgba(54, 58, 120, 0.1);
+
+//transitions
+$transition-fast: all 0.2s ease;
+$transition-medium: all 0.3s ease;
+$transition-slow: all 0.5s ease;
+
+//breakpoints
+$desktop: 1300px;
+$tablet: 920px;
+$mobile: 500px;

@@ -1,0 +1,70 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.features {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    margin-top: 112px;
+    font-family: "Rubic", sans-serif;
+
+    &__image {
+        width: 508px;
+        height: auto;
+    }
+
+    &__title {
+        @include clampText($text-m-subtitle, $text-subtitle);
+        color: $color-deep-black;
+        font-weight: 500;
+    }
+
+    &__description {
+        @include clampText($text-m-main, $text-main);
+        color: $color-dark-grey;
+        font-weight: 400;
+        line-height: 30px;
+        margin-block: 20px 25px;
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+    }
+
+    &__item-text {
+        @include clampText($text-m-small, $text-small);
+        color: $color-dark-grey;
+        font-weight: 400;
+        line-height: 30px;
+    }
+}
+
+@media (max-width: $tablet) {
+    .features {
+        flex-direction: column-reverse;
+        gap: 25px;
+        margin-top: 80px;
+
+        &__title {
+            text-align: center;
+        }
+
+        &__description {
+            text-align: center;
+        }
+
+        &__list {
+            width: fit-content;
+            margin-inline: auto;
+        }
+    }
+}

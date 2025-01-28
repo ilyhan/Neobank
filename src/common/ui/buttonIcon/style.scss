@@ -1,0 +1,24 @@
+@use "@/common/styles/mixin.scss" as *;
+@use "@/common/styles/styleConstants" as *;
+
+.button-icon {
+    background-color: inherit;
+    border-radius: $border-circle;
+    @include flexCenter;
+
+    &__size-20 {
+        width: 27px;
+        height: 27px;
+    }
+
+    &__size-30 {
+        width: 37px;
+        height: 37px;
+    }
+
+    @media(hover: hover) {
+        &:hover{
+            background-color: $color-light-grey;
+        }
+    }
+}
