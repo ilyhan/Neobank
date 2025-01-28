@@ -34,7 +34,11 @@ const FeedbackForm = ({ setSubscribe }: IFeedbackFormPprops) => {
     }, [isSuccess]);
 
     return (
-        <form className={`feedback__form ${isValid ? 'feedback__form_error' : ''}`} onSubmit={handleSubmit}>
+        <form
+            className={`feedback__form ${isValid ? 'feedback__form_error' : ''}`}
+            onSubmit={handleSubmit}
+            data-testid='subscribeForm'
+        >
             <SvgHelper iconName="email" height={38} width={28} />
 
             <input
@@ -50,7 +54,7 @@ const FeedbackForm = ({ setSubscribe }: IFeedbackFormPprops) => {
                     ? <Loader style={{ width: "25px" }} />
                     : <SvgHelper iconName="send" height={25} width={30} />
                 }
-                <span className="feedback__button-text">Subscribe</span>
+                <span data-testid='subscribeBtn' className="feedback__button-text">Subscribe</span>
             </Button>
 
         </form>

@@ -20,7 +20,7 @@ const Tabs = ({ tabs }: ITabsProps) => {
                 items={tabs}
                 classes="tabs__list"
                 renderItem={(tab: ITab, index) => (
-                    <li key={index} className="tabs__item">
+                    <li key={index} className="tabs__item" data-testid='tabItem'>
                         <Button
                             classes={`tabs__button ${index == activeTab && " tabs__button_active"}`}
                             onClick={() => handleSetClick(index)}

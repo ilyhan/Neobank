@@ -7,7 +7,7 @@ interface ILoaderProps {
 
 const Loader = ({ style }: ILoaderProps) => {
     return (
-        <div className="loader" style={style}></div>
+        <div className="loader" style={style} data-testid='loader'></div>
     )
 };
 
