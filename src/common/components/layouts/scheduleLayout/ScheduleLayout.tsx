@@ -7,15 +7,16 @@ import { EApplicationStatus, NumAppStatus } from "@/common/enums/application";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import Loader from "@/common/components/loader/Loader";
+import { IPayment } from "@/common/interfaces/application";
 
 const ScheduleLayout = () => {
     const navigate = useNavigate();
     const application = useSelector((state: RootState) => state.applicationReducer);
     const { applicationId: appId } = useParams();
-    const { data, refetch, isLoading } = useQueryApplication(Number(appId), false);
+    const { data, refetch, isLoading } = useQueryApplication(appId!, false);
 
     useEffect(() => {
-        if (Number(appId) != application.applicationId) {
+        if (appId != application.statementId) {
             navigate('/home');
         }
         else {
@@ -31,16 +32,16 @@ const ScheduleLayout = () => {
 
     return (
         isLoading
-            ? <Loader style={{ margin: '50px 50%', translate: '-50%' }} />
-            : data && data.credit && NumAppStatus[application.step] == NumAppStatus[EApplicationStatus.CC_APPROVED]
-                ? <PaymentSchedule
-                    schedule={data.credit.paymentSchedule}
-                    appId={Number(appId)}
-                />
-                : <Notification
-                    title="Documents are formed"
-                    description="Documents for signing will be sent to your email"
-                />
+        ? <Loader style={{ margin: '50px 50%', translate: '-50%' }} />
+        : data && data.credit && NumAppStatus[application.step] == NumAppStatus[EApplicationStatus.CC_APPROVED]
+            ? <PaymentSchedule
+                schedule={JSON.parse(data.credit.paymentSchedule as string) as IPayment[]}
+                appId={appId!}
+            />
+            : <Notification
+                title="Documents are formed"
+                description="Documents for signing will be sent to your email"
+            />
     )
 };
 

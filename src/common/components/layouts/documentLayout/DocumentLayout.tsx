@@ -12,7 +12,7 @@ const DocumentLayout = () => {
     const application = useSelector((state: RootState) => state.applicationReducer);
 
     useEffect(() => {
-        if (Number(appId) != application.applicationId) {
+        if (appId != application.statementId) {
             navigate('/home');
         };
     }, []);
@@ -25,7 +25,7 @@ const DocumentLayout = () => {
 
     return (
         NumAppStatus[application.step] == NumAppStatus[EApplicationStatus.DOCUMENT_CREATED]
-            ? <DocumentSign appId={Number(appId)} />
+            ? <DocumentSign appId={appId!} />
             : <Notification
                 title="Documents have been successfully signed and sent for approval"
                 description="Within 10 minutes you will be sent a PIN code to your email for confirmation"

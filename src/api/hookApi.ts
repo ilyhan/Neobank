@@ -32,7 +32,7 @@ export const usePostAppApply = () => {
     })
 };
 
-export const usePostScoring = (applicationId: number) => {
+export const usePostScoring = (applicationId: number | string) => {
     return useMutation<IOffer[], IScoring>({
         mutateFn: (data: IScoring) => postScroring(data, applicationId),
     })
@@ -46,25 +46,25 @@ export const useQueryApplication = (applicationId: number | string, firstFetch =
     });
 };
 
-export const usePostSchedule = (applicationId: number) => {
+export const usePostSchedule = (applicationId: number | string) => {
     return useMutation({
         mutateFn: () => postSchedule(applicationId),
     })
 };
 
-export const useDenyApplication = (applicationId: number) => {
+export const useDenyApplication = (applicationId: number | string) => {
     return useMutation({
         mutateFn: () => denyApplication(applicationId),
     })
 };
 
-export const usePostDocuments = (applicationId: number) => {
+export const usePostDocuments = (applicationId: number | string) => {
     return useMutation({
         mutateFn: () => postDocuments(applicationId),
     })
 };
 
-export const usePostCode = (applicationId: number) => {
+export const usePostCode = (applicationId: number | string) => {
     return useMutation({
         mutateFn: (data: string) => postCode(data, applicationId),
     })

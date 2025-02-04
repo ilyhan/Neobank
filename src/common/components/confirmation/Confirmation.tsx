@@ -6,12 +6,12 @@ import Loader from "../loader/Loader";
 import { useActions } from "@/store/actions";
 
 interface IConfirmationProps {
-    appId: number;
+    appId: number | string;
     onSuccess?: () => void;
 };
 
 const Confirmation = ({ appId, onSuccess }: IConfirmationProps) => {
-    const { mutate, isSuccess, isLoading, isError } = usePostCode(appId);
+    const { mutate, isSuccess, isLoading, isError } = usePostCode(appId!);
     const { resetApplication } = useActions();
 
     useEffect(() => {
@@ -30,7 +30,7 @@ const Confirmation = ({ appId, onSuccess }: IConfirmationProps) => {
             <h2 className="confirmation__title">Please enter confirmation code</h2>
 
             <VerificationInput
-                length={4}
+                length={8}
                 isError={isError}
                 onSuccess={handleSuccess}
             />

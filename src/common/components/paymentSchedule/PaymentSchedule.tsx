@@ -4,21 +4,37 @@ import { IPayment } from "@/common/interfaces/application";
 import Button from "@/common/ui/button/Button";
 import Modal from "@/common/ui/modal/Modal";
 import Table from "@/common/ui/table/Table";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DenyModal from "@/common/components/paymentSchedule/modal/DenyModal";
 import { useNavigate } from "react-router-dom";
 import PaymentForm from "@/common/components/paymentSchedule/PaymentForm";
 import { useActions } from "@/store/actions";
 interface IPaymentScheduleProps {
     schedule: IPayment[];
-    appId: number;
+    appId: number | string;
 };
 
 const PaymentSchedule = ({ schedule, appId }: IPaymentScheduleProps) => {
+    const [data, setData] = useState<IPayment[]>([]);
     const [isOpen, setIsOpen] = useState(false);
     const [isDeleted, setIsDeleted] = useState(false);
     const { resetApplication } = useActions();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const newData = schedule.map((item) => {
+            return {
+                number: item.number,
+                date: item.date,
+                totalPayment: item.totalPayment,
+                interestPayment: item.interestPayment,
+                debtPayment: item.debtPayment,
+                remainingDebt: item.remainingDebt,
+            }
+        });
+
+        setData([...newData]);
+    }, []);
 
     const handleOpen = () => {
         setIsOpen(true);
@@ -44,10 +60,12 @@ const PaymentSchedule = ({ schedule, appId }: IPaymentScheduleProps) => {
                 <p className="schedule__step">Step 3 of 5</p>
             </div>
 
-            <Table<IPayment>
-                header={paymentScheduleHeader}
-                content={schedule}
-            />
+            {data &&
+                <Table<IPayment>
+                    header={paymentScheduleHeader}
+                    content={data}
+                />
+            }
 
             <div className="schedule__actions">
                 <Button classes="schedule__button schedule__button_deny" onClick={handleOpen}>

@@ -45,6 +45,7 @@ const Prescoring = () => {
 
     useEffect(() => {
         if (isSuccess) {
+            console.log(data);
             if (data) {
                 setApplicationData(sortOffers(data));
             }

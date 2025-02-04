@@ -16,12 +16,12 @@ const ScoringLayout = () => {
     const application = useSelector((state: RootState) => state.applicationReducer);
 
     useEffect(() => {
-        if (Number(appId) != application.applicationId) {
+        if (appId != application.statementId) {
             navigate('/home');
         };
     }, []);
 
-    const { data, refetch } = useQueryApplication(Number(appId), false);
+    const { data, refetch } = useQueryApplication(appId!, false);
 
     useEffect(() => {
         if(data){

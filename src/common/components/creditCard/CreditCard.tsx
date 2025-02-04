@@ -44,16 +44,16 @@ const CreditCard = ({ formRef }: ICreditCardProps) => {
                 }
                 break;
             case EApplicationStatus.APPROVED:
-                navigate(`/loan/${application.applicationId}`);
+                navigate(`/loan/${application.statementId}`);
                 break;
             case EApplicationStatus.CC_APPROVED:
-                navigate(`/loan/${application.applicationId}/document`);
+                navigate(`/loan/${application.statementId}/document`);
                 break;
             case EApplicationStatus.DOCUMENT_CREATED:
-                navigate(`/loan/${application.applicationId}/document/sign`);
+                navigate(`/loan/${application.statementId}/document/sign`);
                 break;
             case EApplicationStep.CODE:
-                navigate(`/loan/${application.applicationId}/code`);
+                navigate(`/loan/${application.statementId}/code`);
                 break;
         }
     };

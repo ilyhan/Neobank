@@ -18,14 +18,14 @@ export interface IPrescoring {
 }
 
 export interface IOffer {
-    applicationId: number;
+    statementId:string;
     requestedAmount: number;
     totalAmount: number;
     term: number;
     monthlyPayment: number;
     rate: number;
-    isInsuranceEnabled: boolean;
-    isSalaryClient: boolean;
+    insuranceEnabled: boolean;
+    salaryClient: boolean;
 }
 
 export interface IScoring {
@@ -36,11 +36,11 @@ export interface IScoring {
     passportIssueBranch: string;
     employment: {
         employmentStatus: EEmploymentStatus;
-        employerINN: number;
+        employerINN: number | string;
         salary: number;
         position: EPosition;
         workExperienceTotal: number;
         workExperienceCurrent: number;
     }
-    account: number;
+    account: number | string;
 }

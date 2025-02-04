@@ -24,8 +24,8 @@ export const postApplicationApply = async (data: IOffer) => {
 };
 
 //отправка scoring
-export const postScroring = async (data: IScoring, applicationId: number) => {
-    const response = await axios.put(`${baseUrl}/application/registration/${applicationId}`, data);
+export const postScroring = async (data: IScoring, applicationId: number | string) => {
+    const response = await axios.post(`${baseUrl}/application/registration/${applicationId}`, data);
     return response.data;
 };
 
@@ -39,25 +39,25 @@ export const getApplication = async (applicationId: number | string): Promise<IC
 };
 
 //согласование графика платежей
-export const postSchedule = async (applicationId: number) => {
+export const postSchedule = async (applicationId: number | string) => {
     const response = await axios.post(`${baseUrl}/document/${applicationId}`);
     return response.data;
 };
 
 //отказ от заявки
-export const denyApplication = async (applicationId: number) => {
+export const denyApplication = async (applicationId: number | string) => {
     const response = await axios.post(`${baseUrl}/application/${applicationId}/deny`);
     return response.data;
 };
 
 //согласование документов
-export const postDocuments = async (applicationId: number) => {
+export const postDocuments = async (applicationId: number | string) => {
     const response = await axios.post(`${baseUrl}/document/${applicationId}/sign`);
     return response.data;
 };
 
 //подтверждение кода
-export const postCode = async (data: string, applicationId: number) => {
+export const postCode = async (data: string, applicationId: number | string) => {
     const response = await axios.post(`${baseUrl}/document/${applicationId}/sign/code`, data, {
         headers: {
             'Content-Type': 'application/json'

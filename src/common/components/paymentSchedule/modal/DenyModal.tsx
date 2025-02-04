@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useDenyApplication } from "@/api/hookApi";
 import Loader from "@/common/components/loader/Loader";
 interface IDenyModalProps {
-    appId: number;
+    appId: number | string;
     onClose: () => void;
     onDelete: () => void;
 };

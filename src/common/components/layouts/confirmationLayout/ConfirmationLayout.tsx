@@ -13,7 +13,7 @@ const ConfirmationLayout = () => {
     const application = useSelector((state: RootState) => state.applicationReducer);
 
     useEffect(() => {
-        if (Number(appId) != application.applicationId) {
+        if (appId != application.statementId) {
             navigate('/home');
         };
     }, []);
@@ -30,7 +30,7 @@ const ConfirmationLayout = () => {
 
     return (
         !next && NumAppStatus[application.step] === NumAppStatus[EApplicationStep.CODE]
-            ? <Confirmation appId={Number(appId)} onSuccess={nextStep} />
+            ? <Confirmation appId={appId!} onSuccess={nextStep} />
             : <Сongratulation />
     )
 };

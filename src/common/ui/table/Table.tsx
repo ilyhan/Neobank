@@ -1,5 +1,5 @@
 import "@/common/ui/table/style.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "@/common/ui/button/Button";
 import SvgHelper from "@/common/svg-helper/SvgHelper";
 import { formattingDate } from "@/common/helper/formattingDate";
@@ -12,6 +12,10 @@ interface ITableProps<T> {
 const Table = <T extends object>({ header, content }: ITableProps<T>) => {
     const [data, setData] = useState<T[]>(content);
     const [activeCol, setActiveCol] = useState([true, ...Array(header.length - 1).fill(false)]); //колонка по которой идет сортировка помечается true 
+
+    useEffect(()=>{
+        setData(content);
+    }, [content]);
 
     const handleClick = (index: number) => {
         const arr = [...data].sort((a, b) => {

@@ -9,12 +9,12 @@ import { useActions } from "@/store/actions";
 import { EApplicationStep } from "@/common/enums/application";
 
 interface IDocumentSignProps {
-    appId: number;
+    appId: number | string;
 };
 
 const DocumentSign = ({ appId }: IDocumentSignProps) => {
     const [isChecked, setIsChecked] = useState(true);
-    const { mutate, isSuccess, isLoading } = usePostDocuments(appId);
+    const { mutate, isSuccess, isLoading } = usePostDocuments(appId!);
     const { setNextStep } = useActions();
 
     useEffect(() => {

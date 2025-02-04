@@ -23,7 +23,7 @@ export interface ICredit {
     psk: number;
     isInsuranceEnabled: boolean;
     isSalaryClient: boolean;
-    paymentSchedule: IPayment[];
+    paymentSchedule: IPayment[] | string;
 };
 
 export interface ICreditApplication {

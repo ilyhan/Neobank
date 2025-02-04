@@ -34,14 +34,14 @@ const OfferCard = ({ card }: IOfferCardProps) => {
             <p className="offer-card__paragraph">Total amount: {card.totalAmount} ₽</p>
             <p className="offer-card__paragraph">For {card.term} months</p>
             <p className="offer-card__paragraph">Monthly payment: {card.monthlyPayment} ₽</p>
-            <p className="offer-card__paragraph">Your rate: {card.rate}%</p>
+            <p className="offer-card__paragraph">Your rate: {Math.round(card.rate * 100)}%</p>
             <p className="offer-card__paragraph offer-card__paragraph_flex">
                 Insurance included
-                <SvgHelper iconName={card.isInsuranceEnabled ? "success_input" : "error"} width={24} height={24} />
+                <SvgHelper iconName={card.insuranceEnabled ? "success_input" : "error"} width={24} height={24} />
             </p>
             <p className="offer-card__paragraph offer-card__paragraph_flex">
                 Salary client
-                <SvgHelper iconName={card.isSalaryClient ? "success_input" : "error"} width={24} height={24} />
+                <SvgHelper iconName={card.salaryClient ? "success_input" : "error"} width={24} height={24} />
             </p>
 
             <Button classes="offer-card__button" onClick={handleChoseOffer}>

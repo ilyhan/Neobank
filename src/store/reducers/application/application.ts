@@ -10,14 +10,14 @@ const getApplicationData = (): IApplicationInitial => {
             return JSON.parse(storedData);
         } catch (error) {
             return {
-                applicationId: null,
+                statementId: null,
                 offers: null,
                 step: EApplicationStep.PRESCORING,
             };
         }
     }
     return {
-        applicationId: null,
+        statementId: null,
         offers: null,
         step: EApplicationStep.PRESCORING,
     };
@@ -30,7 +30,7 @@ const applicationSlice = createSlice({
     initialState,
     reducers: {
         setApplicationData(state, action: PayloadAction<IOffer[]>) {
-            state.applicationId = action.payload[0].applicationId;
+            state.statementId = action.payload[0].statementId;
             state.offers = action.payload;
             state.step = EApplicationStatus.PREAPPROVAL;
 
@@ -40,15 +40,19 @@ const applicationSlice = createSlice({
         setStepScoring(state) {
             state.step = EApplicationStatus.APPROVED;
             localStorage.setItem('application', JSON.stringify(state));
+            console.log(state.statementId, state.offers);
+
         },
 
         setNextStep(state, action: PayloadAction<EApplicationStep | EApplicationStatus>) {
             state.step = action.payload;
             localStorage.setItem('application', JSON.stringify(state));
+            console.log(state.statementId, state.offers);
+
         },
 
         resetApplication(state) {
-            state.applicationId = null;
+            state.statementId = null;
             state.offers = null;
             state.step = EApplicationStep.PRESCORING;
 

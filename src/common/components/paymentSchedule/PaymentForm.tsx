@@ -7,7 +7,7 @@ import { EApplicationStatus } from "@/common/enums/application";
 import Checkbox from "@/common/ui/checkbox/Checkbox";
 
 interface IPaymentFormProps {
-    appId: number;
+    appId: number | string;
 };
 
 const PaymentForm = ({ appId }: IPaymentFormProps) => {

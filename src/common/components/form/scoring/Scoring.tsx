@@ -43,7 +43,7 @@ const Scoring = ({ onSuccess }: IScoringProps) => {
         isError,
         isLoading,
         isSuccess
-    } = usePostScoring(Number(id));
+    } = usePostScoring(id!);
 
     const submitForm = (data: IScoring) => {
         mutate(validateScoring(data));
